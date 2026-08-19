@@ -2,20 +2,12 @@ import os
 import socket
 import platform
 import psutil
-import wmi
-import winreg
-import subprocess
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 import sys
 import requests
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from email import encoders
 import hashlib
-import time
+import subprocess
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,10 +32,29 @@ class SharangaScanner:
             'vt_api_key': os.getenv('VIRUSTOTAL_API_KEY', '')
         }
         
-        try:
-            self.c = wmi.WMI()
-        except:
-            self.c = None
+        # Windows-specific libraries - only import on Windows
+        self.c = None
+        self.winreg = None
+        self.win32evtlog = None
+        
+        if platform.system() == 'Windows':
+            try:
+                import wmi
+                self.c = wmi.WMI()
+            except:
+                self.c = None
+            
+            try:
+                import winreg
+                self.winreg = winreg
+            except:
+                self.winreg = None
+            
+            try:
+                import win32evtlog
+                self.win32evtlog = win32evtlog
+            except:
+                self.win32evtlog = None
 
     # ============================================================
     # EMAIL/TELEGRAM/SLACK ALERTS
@@ -56,6 +67,10 @@ class SharangaScanner:
             
             if not sender or not password:
                 return False
+            
+            import smtplib
+            from email.mime.text import MIMEText
+            from email.mime.multipart import MIMEMultipart
             
             msg = MIMEMultipart()
             msg['From'] = sender
@@ -148,12 +163,8 @@ Suspicious Processes:
                     if ip_response.status_code == 200:
                         ip_data = ip_response.json()
                         city = ip_data.get('city', '')
-                        region = ip_data.get('region', '')
-                        country = ip_data.get('country_name', '')
                         if city:
-                            weather_info['city'] = f"{city}, {region}, {country}"
-                        elif region:
-                            weather_info['city'] = f"{region}, {country}"
+                            weather_info['city'] = f"{city}, {ip_data.get('region', '')}, {ip_data.get('country_name', '')}"
                 except:
                     pass
             
@@ -196,16 +207,10 @@ Suspicious Processes:
                 weather_info['sunset'] = astronomy.get('sunset', '--:--')
                 
                 area_name = data.get('nearest_area', [{}])[0].get('areaName', [{}])[0].get('value', '')
-                region_name = data.get('nearest_area', [{}])[0].get('region', [{}])[0].get('value', '')
-                country_name = data.get('nearest_area', [{}])[0].get('country', [{}])[0].get('value', '')
-                
                 if area_name:
-                    weather_info['city'] = f"{area_name}, {region_name}, {country_name}"
-                elif region_name:
-                    weather_info['city'] = f"{region_name}, {country_name}"
+                    weather_info['city'] = f"{area_name}, {data.get('nearest_area', [{}])[0].get('region', [{}])[0].get('value', '')}, {data.get('nearest_area', [{}])[0].get('country', [{}])[0].get('value', '')}"
         except Exception as e:
             weather_info['condition'] = 'Weather API Error'
-            weather_info['error'] = str(e)
         
         return weather_info
 
@@ -225,20 +230,33 @@ Suspicious Processes:
         return icons.get(code, '🌤️')
 
     # ============================================================
-    # GET DEVICE INFO
+    # GET DEVICE INFO (Platform Independent)
     # ============================================================
     def get_device_info(self):
         try:
-            system = self.c.Win32_ComputerSystem()[0]
+            if platform.system() == 'Windows' and self.c:
+                system = self.c.Win32_ComputerSystem()[0]
+                self.device_info['device_name'] = system.Name
+                self.device_info['username'] = system.UserName
+                self.device_info['domain'] = system.Domain
+                self.device_info['system_manufacturer'] = system.Manufacturer or 'Unknown'
+                self.device_info['system_model'] = system.Model or 'Unknown'
+                self.device_info['ram_gb'] = round(int(system.TotalPhysicalMemory) / (1024**3), 2)
+                self.device_info['is_domain_joined'] = system.Domain != 'WORKGROUP'
+            else:
+                # Linux/Mac fallback
+                self.device_info['device_name'] = socket.gethostname()
+                self.device_info['username'] = os.environ.get('USER', 'Unknown')
+                self.device_info['domain'] = 'Unknown'
+                self.device_info['system_manufacturer'] = 'Unknown'
+                self.device_info['system_model'] = platform.processor() or 'Unknown'
+                self.device_info['ram_gb'] = round(psutil.virtual_memory().total / (1024**3), 2)
+                self.device_info['is_domain_joined'] = False
             
-            self.device_info['device_name'] = system.Name
-            self.device_info['username'] = system.UserName
-            self.device_info['domain'] = system.Domain
             self.device_info['os_name'] = platform.system()
             self.device_info['os_version'] = platform.version()
             self.device_info['os_release'] = platform.release()
             self.device_info['processor'] = platform.processor() or 'Unknown'
-            self.device_info['ram_gb'] = round(int(system.TotalPhysicalMemory) / (1024**3), 2)
             
             try:
                 hostname = socket.gethostname()
@@ -246,57 +264,33 @@ Suspicious Processes:
             except:
                 self.device_info['ip_address'] = 'Unknown'
             
-            self.device_info['is_domain_joined'] = system.Domain != 'WORKGROUP'
-            
-            # System Manufacturer + Model
-            if system.Manufacturer:
-                self.device_info['system_manufacturer'] = system.Manufacturer
-            else:
-                try:
-                    reg_path = r"SYSTEM\CurrentControlSet\Control\SystemInformation"
-                    key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path)
-                    self.device_info['system_manufacturer'] = winreg.QueryValueEx(key, "SystemManufacturer")[0]
-                except:
-                    self.device_info['system_manufacturer'] = 'Unknown'
-            
-            if system.Model:
-                self.device_info['system_model'] = system.Model
-            else:
-                try:
-                    reg_path = r"SYSTEM\CurrentControlSet\Control\SystemInformation"
-                    key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path)
-                    self.device_info['system_model'] = winreg.QueryValueEx(key, "SystemProductName")[0]
-                except:
-                    self.device_info['system_model'] = 'Unknown'
-            
         except Exception as e:
-            self.device_info['device_name'] = os.environ.get('COMPUTERNAME', 'Unknown')
-            self.device_info['username'] = os.environ.get('USERNAME', 'Unknown')
-            self.device_info['domain'] = os.environ.get('USERDOMAIN', 'WORKGROUP')
+            # Fallback
+            self.device_info['device_name'] = socket.gethostname()
+            self.device_info['username'] = os.environ.get('USER', 'Unknown')
+            self.device_info['domain'] = 'Unknown'
             self.device_info['os_name'] = platform.system()
             self.device_info['os_version'] = platform.version()
             self.device_info['os_release'] = platform.release()
             self.device_info['processor'] = platform.processor() or 'Unknown'
             self.device_info['ram_gb'] = round(psutil.virtual_memory().total / (1024**3), 2)
             self.device_info['ip_address'] = socket.gethostbyname(socket.gethostname())
-            self.device_info['is_domain_joined'] = self.device_info['domain'] != 'WORKGROUP'
+            self.device_info['is_domain_joined'] = False
             self.device_info['system_manufacturer'] = 'Unknown'
             self.device_info['system_model'] = 'Unknown'
         
         return self.device_info
 
     # ============================================================
-    # GET SYSTEM CONFIG - BALARC LEVEL (IMPORTANT ONLY)
+    # GET SYSTEM CONFIG (Platform Independent)
     # ============================================================
     def get_system_config(self):
         config = {}
         
         try:
-            # Uptime & Boot Time
             config['uptime'] = self.get_uptime()
             config['boot_time'] = datetime.fromtimestamp(psutil.boot_time()).strftime('%Y-%m-%d %H:%M:%S')
             
-            # Battery
             try:
                 battery = psutil.sensors_battery()
                 if battery:
@@ -305,12 +299,10 @@ Suspicious Processes:
             except:
                 pass
             
-            # Weather
             print("🌤️ Fetching weather data...")
             weather = self.get_weather()
             config['weather'] = weather
             
-            # Disk Drives
             disks = []
             for partition in psutil.disk_partitions():
                 try:
@@ -326,27 +318,32 @@ Suspicious Processes:
                     pass
             config['disks'] = disks
             
-            # ========== CPU - Important Only ==========
-            cpu_info = {}
-            if self.c:
-                for cpu in self.c.Win32_Processor():
-                    cpu_info['name'] = cpu.Name or 'Unknown'
-                    cpu_info['cores'] = cpu.NumberOfCores or 'Unknown'
-                    cpu_info['logical'] = cpu.NumberOfLogicalProcessors or 'Unknown'
-                    cpu_info['max_clock'] = f"{cpu.MaxClockSpeed} MHz" if cpu.MaxClockSpeed else 'Unknown'
-                    cpu_info['current_clock'] = f"{cpu.CurrentClockSpeed} MHz" if cpu.CurrentClockSpeed else 'Unknown'
-                    cpu_info['usage'] = psutil.cpu_percent(interval=1)
-                    break
-            else:
-                cpu_info['name'] = platform.processor() or 'Unknown'
-                cpu_info['cores'] = psutil.cpu_count(logical=False) or 'Unknown'
-                cpu_info['logical'] = psutil.cpu_count(logical=True) or 'Unknown'
-                cpu_info['max_clock'] = 'Unknown'
-                cpu_info['current_clock'] = 'Unknown'
-                cpu_info['usage'] = psutil.cpu_percent(interval=1)
+            # CPU Info
+            cpu_info = {
+                'name': platform.processor() or 'Unknown',
+                'cores': psutil.cpu_count(logical=False) or 'Unknown',
+                'logical': psutil.cpu_count(logical=True) or 'Unknown',
+                'max_clock': 'Unknown',
+                'current_clock': 'Unknown',
+                'usage': psutil.cpu_percent(interval=1)
+            }
+            
+            # Windows-specific: try to get more details
+            if platform.system() == 'Windows' and self.c:
+                try:
+                    for cpu in self.c.Win32_Processor():
+                        cpu_info['name'] = cpu.Name or 'Unknown'
+                        cpu_info['cores'] = cpu.NumberOfCores or 'Unknown'
+                        cpu_info['logical'] = cpu.NumberOfLogicalProcessors or 'Unknown'
+                        cpu_info['max_clock'] = f"{cpu.MaxClockSpeed} MHz" if cpu.MaxClockSpeed else 'Unknown'
+                        cpu_info['current_clock'] = f"{cpu.CurrentClockSpeed} MHz" if cpu.CurrentClockSpeed else 'Unknown'
+                        break
+                except:
+                    pass
+            
             config['cpu'] = cpu_info
             
-            # ========== Memory ==========
+            # Memory
             mem = psutil.virtual_memory()
             config['memory'] = {
                 'total_gb': round(mem.total / (1024**3), 2),
@@ -355,78 +352,54 @@ Suspicious Processes:
                 'used_percent': mem.percent
             }
             
-            # ========== Motherboard ==========
+            # Motherboard - Windows only
             motherboard_info = {'name': 'Unknown', 'manufacturer': 'Unknown'}
-            try:
-                if self.c:
+            if platform.system() == 'Windows' and self.c:
+                try:
                     for board in self.c.Win32_BaseBoard():
                         if board.Product:
                             motherboard_info['name'] = board.Product
                         if board.Manufacturer:
                             motherboard_info['manufacturer'] = board.Manufacturer
                         break
-            except:
-                pass
-            
-            if motherboard_info['name'] == 'Unknown':
-                try:
-                    reg_path = r"SYSTEM\CurrentControlSet\Control\SystemInformation"
-                    key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path)
-                    try:
-                        motherboard_info['name'] = winreg.QueryValueEx(key, "SystemProductName")[0]
-                    except:
-                        pass
-                    try:
-                        motherboard_info['manufacturer'] = winreg.QueryValueEx(key, "SystemManufacturer")[0]
-                    except:
-                        pass
                 except:
                     pass
-            
             config['motherboard'] = motherboard_info
             
-            # ========== BIOS ==========
+            # BIOS - Windows only
             bios_info = {'version': 'Unknown', 'manufacturer': 'Unknown'}
-            try:
-                if self.c:
+            if platform.system() == 'Windows' and self.c:
+                try:
                     for bios in self.c.Win32_BIOS():
                         if bios.SMBIOSBIOSVersion:
                             bios_info['version'] = bios.SMBIOSBIOSVersion
                         if bios.Manufacturer:
                             bios_info['manufacturer'] = bios.Manufacturer
                         break
-            except:
-                pass
+                except:
+                    pass
+            config['bios'] = bios_info
             
-            if bios_info['version'] == 'Unknown':
+            # GPU - Windows only
+            gpus = []
+            if platform.system() == 'Windows' and self.c:
                 try:
-                    reg_path = r"SYSTEM\CurrentControlSet\Control\SystemInformation"
-                    key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, reg_path)
-                    try:
-                        bios_info['version'] = winreg.QueryValueEx(key, "BIOSVersion")[0]
-                    except:
-                        pass
+                    for gpu in self.c.Win32_VideoController():
+                        if gpu.Name and 'Microsoft' not in gpu.Name:
+                            gpu_ram = 'Unknown'
+                            try:
+                                if gpu.AdapterRAM:
+                                    gpu_ram = f"{gpu.AdapterRAM / (1024**3):.2f} GB"
+                            except:
+                                pass
+                            gpus.append({
+                                'name': gpu.Name,
+                                'ram': gpu_ram,
+                                'driver': gpu.DriverVersion or 'Unknown'
+                            })
                 except:
                     pass
             
-            config['bios'] = bios_info
-            
-            # ========== GPU ==========
-            gpus = []
-            if self.c:
-                for gpu in self.c.Win32_VideoController():
-                    if gpu.Name and 'Microsoft' not in gpu.Name:
-                        gpu_ram = 'Unknown'
-                        try:
-                            if gpu.AdapterRAM:
-                                gpu_ram = f"{gpu.AdapterRAM / (1024**3):.2f} GB"
-                        except:
-                            pass
-                        gpus.append({
-                            'name': gpu.Name,
-                            'ram': gpu_ram,
-                            'driver': gpu.DriverVersion or 'Unknown'
-                        })
             if not gpus:
                 gpus.append({'name': 'Integrated Graphics', 'ram': 'Unknown', 'driver': 'Unknown'})
             config['gpus'] = gpus
@@ -445,7 +418,7 @@ Suspicious Processes:
         return f"{days}d {hours}h {minutes}m"
 
     # ============================================================
-    # GET NETWORK INFO
+    # GET NETWORK INFO (Platform Independent - Fixed)
     # ============================================================
     def get_network_info(self):
         network_info = {
@@ -460,123 +433,46 @@ Suspicious Processes:
         }
         
         try:
-            if self.c:
+            if platform.system() == 'Windows' and self.c:
                 for adapter in self.c.Win32_NetworkAdapterConfiguration(IPEnabled=True):
                     if adapter.IPAddress:
                         for ip in adapter.IPAddress:
                             if ip != '127.0.0.1' and ':' not in ip:
                                 network_info['ip_address'] = ip
-                                
-                                if adapter.Description:
-                                    network_info['interface'] = adapter.Description
-                                
+                                network_info['interface'] = adapter.Description or 'Unknown'
                                 if adapter.MACAddress:
                                     network_info['mac_address'] = adapter.MACAddress
-                                
                                 if adapter.DefaultIPGateway:
                                     network_info['gateway'] = adapter.DefaultIPGateway[0]
-                                
                                 if adapter.DHCPServer:
                                     network_info['dhcp_server'] = adapter.DHCPServer
                                 
                                 desc = adapter.Description.lower() if adapter.Description else ''
-                                
-                                wifi_keywords = ['wi-fi', 'wlan', 'wireless', '802.11', 'wifi']
-                                if any(kw in desc for kw in wifi_keywords):
+                                if 'wi-fi' in desc or 'wlan' in desc or 'wireless' in desc:
                                     network_info['connection_type'] = 'Wi-Fi'
                                     try:
                                         result = subprocess.run(['netsh', 'wlan', 'show', 'interfaces'], 
                                                               capture_output=True, text=True)
                                         for line in result.stdout.split('\n'):
-                                            line = line.strip()
                                             if 'SSID' in line and ':' in line:
-                                                ssid = line.split(':', 1)[1].strip()
-                                                if ssid and ssid != '':
-                                                    network_info['ssid'] = ssid
-                                            if 'Speed' in line and ':' in line:
-                                                speed_val = line.split(':', 1)[1].strip()
-                                                if speed_val:
-                                                    network_info['speed'] = speed_val
-                                    except:
-                                        pass
-                                elif 'ethernet' in desc or 'gigabit' in desc or 'realtek' in desc or 'intel' in desc:
-                                    network_info['connection_type'] = 'Ethernet'
-                                    try:
-                                        for net_adapter in self.c.Win32_NetworkAdapter():
-                                            if net_adapter.Description and net_adapter.Description.lower() == desc:
-                                                if net_adapter.Speed:
-                                                    speed_val = int(net_adapter.Speed)
-                                                    if speed_val >= 1000000000:
-                                                        network_info['speed'] = f"{speed_val // 1000000000} Gbps"
-                                                    elif speed_val >= 1000000:
-                                                        network_info['speed'] = f"{speed_val // 1000000} Mbps"
-                                                    else:
-                                                        network_info['speed'] = f"{speed_val} bps"
+                                                network_info['ssid'] = line.split(':', 1)[1].strip()
                                                 break
                                     except:
                                         pass
+                                elif 'ethernet' in desc or 'gigabit' in desc:
+                                    network_info['connection_type'] = 'Ethernet'
                                 break
+            else:
+                # Linux/Mac fallback - using socket only (no netifaces dependency)
+                try:
+                    hostname = socket.gethostname()
+                    network_info['ip_address'] = socket.gethostbyname(hostname)
+                    network_info['interface'] = 'eth0'
+                    network_info['connection_type'] = 'Ethernet'
+                except:
+                    pass
         except Exception as e:
             network_info['error'] = str(e)
-        
-        # Fallback for Wi-Fi
-        if network_info['connection_type'] == 'Unknown':
-            try:
-                result = subprocess.run(['netsh', 'wlan', 'show', 'interfaces'], capture_output=True, text=True)
-                if 'SSID' in result.stdout and 'BSSID' in result.stdout:
-                    network_info['connection_type'] = 'Wi-Fi'
-                    for line in result.stdout.split('\n'):
-                        line = line.strip()
-                        if 'SSID' in line and ':' in line:
-                            ssid = line.split(':', 1)[1].strip()
-                            if ssid and ssid != '':
-                                network_info['ssid'] = ssid
-                else:
-                    network_info['connection_type'] = 'Ethernet'
-            except:
-                network_info['connection_type'] = 'Ethernet'
-        
-        # Fallback for MAC
-        if network_info['mac_address'] == 'Unknown':
-            try:
-                result = subprocess.run(['ipconfig', '/all'], capture_output=True, text=True)
-                lines = result.stdout.split('\n')
-                for line in lines:
-                    if 'Physical Address' in line:
-                        mac = line.split(':', 1)[1].strip()
-                        if mac and mac != '' and '--' not in mac:
-                            network_info['mac_address'] = mac
-                            break
-            except:
-                pass
-        
-        # Fallback for Interface
-        if network_info['interface'] == 'Unknown':
-            try:
-                result = subprocess.run(['ipconfig'], capture_output=True, text=True)
-                lines = result.stdout.split('\n')
-                for line in lines:
-                    if 'adapter' in line.lower():
-                        interface = line.replace('adapter', '').replace(':', '').strip()
-                        if interface and interface != '':
-                            network_info['interface'] = interface
-                            break
-            except:
-                pass
-        
-        # Fallback for Gateway
-        if network_info['gateway'] == 'Unknown':
-            try:
-                result = subprocess.run(['ipconfig'], capture_output=True, text=True)
-                lines = result.stdout.split('\n')
-                for line in lines:
-                    if 'Default Gateway' in line:
-                        gateway = line.split(':', 1)[1].strip()
-                        if gateway and gateway != '':
-                            network_info['gateway'] = gateway
-                            break
-            except:
-                pass
         
         if network_info['ip_address'] == 'Unknown':
             try:
@@ -588,45 +484,50 @@ Suspicious Processes:
         return network_info
 
     # ============================================================
-    # GET INSTALLED APPS
+    # GET INSTALLED APPS (Windows only)
     # ============================================================
     def get_installed_apps(self):
         apps = []
         
-        registry_paths = [
-            r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
-            r"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
-        ]
-        
-        for path in registry_paths:
+        if platform.system() == 'Windows' and self.winreg:
             try:
-                key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, path, 0, winreg.KEY_READ)
-                i = 0
-                while True:
+                registry_paths = [
+                    r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",
+                    r"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
+                ]
+                
+                for path in registry_paths:
                     try:
-                        subkey_name = winreg.EnumKey(key, i)
-                        subkey = winreg.OpenKey(key, subkey_name)
-                        try:
-                            app_name = winreg.QueryValueEx(subkey, "DisplayName")[0]
-                            if app_name:
-                                app_version = 'Unknown'
+                        key = self.winreg.OpenKey(self.winreg.HKEY_LOCAL_MACHINE, path, 0, self.winreg.KEY_READ)
+                        i = 0
+                        while True:
+                            try:
+                                subkey_name = self.winreg.EnumKey(key, i)
+                                subkey = self.winreg.OpenKey(key, subkey_name)
                                 try:
-                                    app_version = winreg.QueryValueEx(subkey, "DisplayVersion")[0]
+                                    app_name = self.winreg.QueryValueEx(subkey, "DisplayName")[0]
+                                    if app_name:
+                                        app_version = 'Unknown'
+                                        try:
+                                            app_version = self.winreg.QueryValueEx(subkey, "DisplayVersion")[0]
+                                        except:
+                                            pass
+                                        apps.append({
+                                            'name': app_name,
+                                            'version': app_version,
+                                            'publisher': 'Unknown'
+                                        })
                                 except:
                                     pass
-                                apps.append({
-                                    'name': app_name,
-                                    'version': app_version,
-                                    'publisher': 'Unknown'
-                                })
-                        except:
-                            pass
-                        i += 1
-                    except WindowsError:
-                        break
+                                i += 1
+                            except WindowsError:
+                                break
+                    except:
+                        pass
             except:
                 pass
         
+        # Remove duplicates
         unique_apps = []
         seen = set()
         for app in apps:
@@ -637,36 +538,38 @@ Suspicious Processes:
         return unique_apps
 
     # ============================================================
-    # GET UNINSTALLED APPS
+    # GET UNINSTALLED APPS (Windows only)
     # ============================================================
     def get_uninstalled_apps(self):
         uninstalled = []
-        try:
-            import win32evtlog
-            hand = win32evtlog.OpenEventLog(None, 'Application')
-            flags = win32evtlog.EVENTLOG_BACKWARDS_READ | win32evtlog.EVENTLOG_SEQUENTIAL_READ
-            events = win32evtlog.ReadEventLog(hand, flags, 0)
-            count = 0
-            for event in events:
-                if count > 200:
-                    break
-                if event.EventID in [1034, 11724]:
-                    event_time = event.TimeGenerated
-                    if event_time:
-                        event_time = datetime.fromtimestamp(event_time.timestamp())
-                        if (datetime.now() - event_time).days <= 7:
-                            app_name = 'Unknown'
-                            if event.StringInserts:
-                                app_name = event.StringInserts[0]
-                            uninstalled.append({
-                                'app_name': app_name,
-                                'uninstall_date': event_time,
-                                'event_id': event.EventID
-                            })
-                count += 1
-            win32evtlog.CloseEventLog(hand)
-        except:
-            pass
+        
+        if platform.system() == 'Windows' and self.win32evtlog:
+            try:
+                hand = self.win32evtlog.OpenEventLog(None, 'Application')
+                flags = self.win32evtlog.EVENTLOG_BACKWARDS_READ | self.win32evtlog.EVENTLOG_SEQUENTIAL_READ
+                events = self.win32evtlog.ReadEventLog(hand, flags, 0)
+                count = 0
+                for event in events:
+                    if count > 200:
+                        break
+                    if event.EventID in [1034, 11724]:
+                        event_time = event.TimeGenerated
+                        if event_time:
+                            event_time = datetime.fromtimestamp(event_time.timestamp())
+                            if (datetime.now() - event_time).days <= 7:
+                                app_name = 'Unknown'
+                                if event.StringInserts:
+                                    app_name = event.StringInserts[0]
+                                uninstalled.append({
+                                    'app_name': app_name,
+                                    'uninstall_date': event_time,
+                                    'event_id': event.EventID
+                                })
+                    count += 1
+                self.win32evtlog.CloseEventLog(hand)
+            except:
+                pass
+        
         return uninstalled
 
     # ============================================================
@@ -776,7 +679,7 @@ Suspicious Processes:
         print(f"  Device Name         : {device['device_name']}")
         print(f"  User Name           : {device['username']}")
         print(f"  Domain              : {device['domain']}")
-        print(f"  Domain Joined       : {'✅ Yes' if device['is_domain_joined'] else '❌ No'}")
+        print(f"  Domain Joined       : {'✅ Yes' if device.get('is_domain_joined') else '❌ No'}")
         print(f"  OS                  : {device['os_name']} {device['os_release']}")
         print(f"  IP Address          : {device['ip_address']}")
         print(f"  RAM                 : {device['ram_gb']} GB")
@@ -787,8 +690,10 @@ Suspicious Processes:
         print("-" * 40)
         print(f"  Name           : {cpu.get('name', 'Unknown')}")
         print(f"  Cores          : {cpu.get('cores', 'Unknown')} Physical | {cpu.get('logical', 'Unknown')} Logical")
-        print(f"  Max Clock      : {cpu.get('max_clock', 'Unknown')}")
-        print(f"  Current Clock  : {cpu.get('current_clock', 'Unknown')}")
+        if cpu.get('max_clock'):
+            print(f"  Max Clock      : {cpu.get('max_clock', 'Unknown')}")
+        if cpu.get('current_clock'):
+            print(f"  Current Clock  : {cpu.get('current_clock', 'Unknown')}")
         print(f"  Usage          : {cpu.get('usage', 0)}%")
         
         print("\n💾 MEMORY")
@@ -797,15 +702,17 @@ Suspicious Processes:
         print(f"  Used           : {memory.get('used_gb', 0)} GB ({memory.get('used_percent', 0)}%)")
         print(f"  Available      : {memory.get('available_gb', 0)} GB")
         
-        print("\n🖥️  MOTHERBOARD")
-        print("-" * 40)
-        print(f"  Name           : {motherboard.get('name', 'Unknown')}")
-        print(f"  Manufacturer   : {motherboard.get('manufacturer', 'Unknown')}")
+        if motherboard.get('name') != 'Unknown':
+            print("\n🖥️  MOTHERBOARD")
+            print("-" * 40)
+            print(f"  Name           : {motherboard.get('name', 'Unknown')}")
+            print(f"  Manufacturer   : {motherboard.get('manufacturer', 'Unknown')}")
         
-        print("\n🔧 BIOS")
-        print("-" * 40)
-        print(f"  Version        : {bios.get('version', 'Unknown')}")
-        print(f"  Manufacturer   : {bios.get('manufacturer', 'Unknown')}")
+        if bios.get('version') != 'Unknown':
+            print("\n🔧 BIOS")
+            print("-" * 40)
+            print(f"  Version        : {bios.get('version', 'Unknown')}")
+            print(f"  Manufacturer   : {bios.get('manufacturer', 'Unknown')}")
         
         if gpus:
             print("\n🎮 GRAPHICS")
@@ -821,13 +728,15 @@ Suspicious Processes:
         icon = "📶" if conn_type == 'Wi-Fi' else "🔌" if conn_type == 'Ethernet' else "❓"
         print(f"  {icon} Connection Type: {conn_type}")
         print(f"  Interface      : {network.get('interface', 'Unknown')}")
-        print(f"  MAC Address    : {network.get('mac_address', 'Unknown')}")
+        if network.get('mac_address'):
+            print(f"  MAC Address    : {network.get('mac_address', 'Unknown')}")
         print(f"  IP Address     : {network.get('ip_address', 'Unknown')}")
         if conn_type == 'Wi-Fi':
             print(f"  SSID           : {network.get('ssid', 'Unknown')}")
-        else:
+        if network.get('speed'):
             print(f"  Speed          : {network.get('speed', 'Unknown')}")
-        print(f"  Gateway        : {network.get('gateway', 'Unknown')}")
+        if network.get('gateway'):
+            print(f"  Gateway        : {network.get('gateway', 'Unknown')}")
         
         print("\n🌤️ WEATHER")
         print("-" * 40)
