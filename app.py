@@ -25,8 +25,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'sharanga-super-secret-key-2026')
 
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
-UPLOAD_FOLDER = 'uploads'
-REPORTS_FOLDER = 'reports'
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+REPORTS_FOLDER = os.path.join(os.path.dirname(__file__), 'reports')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(REPORTS_FOLDER, exist_ok=True)
 
@@ -43,22 +43,26 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        user = cursor.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
-        conn.close()
-        
-        if user and bcrypt.checkpw(password.encode('utf-8'), user['password_hash']):
-            session['user_id'] = user['id']
-            session['username'] = user['username']
-            session['role'] = user['role']
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            user = cursor.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+            conn.close()
             
-            if user['role'] == 'admin':
-                return redirect(url_for('admin_dashboard'))
+            if user and bcrypt.checkpw(password.encode('utf-8'), user['password_hash']):
+                session['user_id'] = user['id']
+                session['username'] = user['username']
+                session['role'] = user['role']
+                
+                if user['role'] == 'admin':
+                    return redirect(url_for('admin_dashboard'))
+                else:
+                    return redirect(url_for('user_dashboard'))
             else:
-                return redirect(url_for('user_dashboard'))
-        else:
-            return render_template('login.html', error='❌ Invalid username or password')
+                return render_template('login.html', error='❌ Invalid username or password')
+        except Exception as e:
+            print(f"❌ Login error: {e}")
+            return render_template('login.html', error='❌ Database error. Please try again.')
     
     return render_template('login.html')
 
@@ -1066,7 +1070,15 @@ def download_report():
 # ============================================================
 
 if __name__ == '__main__':
-    init_db()
+    # FORCE database initialization
+    print("🗄️ Initializing database...")
+    try:
+        init_db()
+        print("✅ Database initialized successfully!")
+    except Exception as e:
+        print(f"❌ Database init error: {e}")
+        print(traceback.format_exc())
+    
     # Render uses PORT environment variable
     port = int(os.environ.get('PORT', 5000))
     # Debug mode only on local, not on Render
