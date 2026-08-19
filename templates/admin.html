@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏹 Sharanga - Admin Panel</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: rgba(17, 21, 46, 0.7);
+            --bg-card: rgba(20, 24, 52, 0.7);
+            --bg-glass: rgba(17, 21, 46, 0.7);
+            --bg-input: rgba(0, 0, 0, 0.2);
+            --text-primary: #e0e0e0;
+            --text-secondary: #8888bb;
+            --text-muted: #666;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(240, 192, 64, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --scrollbar-track: #0a0e1a;
+            --scrollbar-thumb: #2a2e5a;
+            --card-badge: rgba(42, 46, 90, 0.8);
+            --tag-bg-safe: rgba(40, 167, 69, 0.2);
+            --tag-bg-danger: rgba(220, 53, 69, 0.2);
+            --tag-bg-warning: rgba(255, 193, 7, 0.2);
+            --tag-bg-info: rgba(74, 158, 255, 0.2);
+            --nav-item-bg: rgba(26, 30, 62, 0.4);
+            --nav-item-hover: rgba(240, 192, 64, 0.15);
+            --transition-speed: 0.5s;
+            --bg-animation-opacity: 0.3;
+            --bg-orbs-filter: blur(80px);
+        }
+
+        /* ========== LIGHT THEME ========== */
+        [data-theme="light"] {
+            --bg-primary: #f0ebe3;
+            --bg-secondary: rgba(255, 248, 240, 0.88);
+            --bg-card: rgba(255, 248, 240, 0.85);
+            --bg-glass: rgba(255, 248, 240, 0.88);
+            --bg-input: rgba(0, 0, 0, 0.05);
+            --text-primary: #2a1f3d;
+            --text-secondary: #6b5b7b;
+            --text-muted: #a890a8;
+            --border-color: rgba(100, 80, 120, 0.12);
+            --border-hover: rgba(240, 192, 64, 0.3);
+            --shadow-color: rgba(60, 40, 80, 0.1);
+            --scrollbar-track: #ede5db;
+            --scrollbar-thumb: #b8a0c0;
+            --card-badge: rgba(160, 140, 180, 0.4);
+            --tag-bg-safe: rgba(40, 167, 69, 0.15);
+            --tag-bg-danger: rgba(220, 53, 69, 0.15);
+            --tag-bg-warning: rgba(255, 193, 7, 0.15);
+            --tag-bg-info: rgba(74, 158, 255, 0.15);
+            --nav-item-bg: rgba(200, 180, 210, 0.3);
+            --nav-item-hover: rgba(240, 192, 64, 0.2);
+            --bg-animation-opacity: 0.6;
+            --bg-orbs-filter: blur(60px);
+        }
+
+        /* ========== BASE ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+            overflow-x: hidden;
+        }
+
+        /* ========== BACKGROUND ========== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            transition: all var(--transition-speed) ease;
+        }
+        .bg-orbs {
+            position: absolute;
+            border-radius: 50%;
+            filter: var(--bg-orbs-filter);
+            opacity: var(--bg-animation-opacity);
+            animation: float 20s infinite ease-in-out;
+            transition: all var(--transition-speed) ease;
+        }
+        .bg-orbs:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: #f0c040;
+            top: -10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+        .bg-orbs:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: #4a9eff;
+            bottom: -10%;
+            right: -5%;
+            animation-delay: -7s;
+        }
+        .bg-orbs:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+        [data-theme="light"] .bg-orbs:nth-child(1) {
+            background: radial-gradient(circle, #4a9eff 0%, #2d7dd2 40%, #1a5a9e 100%);
+            opacity: 0.25;
+        }
+        [data-theme="light"] .bg-orbs:nth-child(2) {
+            background: radial-gradient(circle, #f0c040 0%, #e6a800 40%, #cc8800 100%);
+            opacity: 0.2;
+        }
+        [data-theme="light"] .bg-orbs:nth-child(3) {
+            background: radial-gradient(circle, #28a745 0%, #1a8a3a 40%, #0d6b2a 100%);
+            opacity: 0.15;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 40px) scale(0.9); }
+            75% { transform: translate(30px, -20px) scale(1.05); }
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: relative;
+            z-index: 100;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px var(--shadow-color);
+            flex-wrap: wrap;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-left .logo { font-size: 2em; animation: pulse-logo 3s ease-in-out infinite; }
+        @keyframes pulse-logo {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.08) rotate(-3deg); }
+        }
+        .header-left h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0c040, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-left .badge-admin {
+            background: rgba(240, 192, 64, 0.2);
+            border: 1px solid rgba(240, 192, 64, 0.3);
+            color: #f0c040;
+            padding: 2px 14px;
+            border-radius: 15px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .header-right .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+        }
+        .header-right .user-info .role {
+            background: rgba(240, 192, 64, 0.15);
+            padding: 2px 12px;
+            border-radius: 12px;
+            color: #f0c040;
+            font-size: 0.75em;
+        }
+        .btn-logout {
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            padding: 6px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        .btn-logout:hover { background: rgba(220, 53, 69, 0.25); }
+        .btn-logout a { color: inherit; text-decoration: none; }
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        .theme-toggle:hover { border-color: #f0c040; }
+        .theme-toggle .toggle-btn {
+            padding: 4px 12px;
+            border-radius: 25px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.7em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .theme-toggle .toggle-btn.active {
+            background: #f0c040;
+            color: #0a0e1a;
+            box-shadow: 0 2px 15px rgba(240, 192, 64, 0.3);
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 25px;
+        }
+
+        /* ========== STATS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 18px 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '🏹';
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            font-size: 28px;
+            opacity: 0.05;
+        }
+        .stat-card:hover { transform: translateY(-4px); border-color: rgba(240, 192, 64, 0.3); }
+        .stat-card .label { font-size: 0.65em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { font-size: 2em; font-weight: 700; margin: 3px 0; }
+        .stat-card .value.gold { color: #f0c040; }
+        .stat-card .value.green { color: #28a745; }
+        .stat-card .value.red { color: #dc3545; }
+        .stat-card .value.blue { color: #4a9eff; }
+        .stat-card .value.orange { color: #ff8c00; }
+
+        /* ========== GLASS CARD ========== */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 22px 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '🏹';
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            font-size: 60px;
+            opacity: 0.03;
+            transform: rotate(30deg);
+        }
+        .glass-card:hover { border-color: var(--border-hover); }
+        .glass-card .card-title {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            color: var(--text-primary);
+        }
+        .glass-card .card-title .badge {
+            background: var(--card-badge);
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.65em;
+            color: var(--text-secondary);
+        }
+
+        /* ========== CHART ========== */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            max-height: 300px;
+            margin: 10px 0 5px;
+            padding: 10px;
+        }
+
+        /* ========== TABLE ========== */
+        .table-wrap { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82em;
+            color: var(--text-primary);
+        }
+        th {
+            text-align: left;
+            padding: 8px 10px;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.6em;
+            letter-spacing: 0.8px;
+        }
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        tr:hover td { background: rgba(240, 192, 64, 0.04); }
+
+        /* ========== TAGS ========== */
+        .tag {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.6em;
+            font-weight: 600;
+        }
+        .tag-safe { background: var(--tag-bg-safe); color: #28a745; }
+        .tag-danger { background: var(--tag-bg-danger); color: #dc3545; }
+        .tag-warning { background: var(--tag-bg-warning); color: #ffc107; }
+        .tag-info { background: var(--tag-bg-info); color: #4a9eff; }
+        .tag-wifi { background: rgba(74, 158, 255, 0.2); color: #4a9eff; }
+        .tag-ethernet { background: rgba(40, 167, 69, 0.2); color: #28a745; }
+
+        /* ========== SEARCH ========== */
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .search-box input {
+            flex: 1;
+            min-width: 180px;
+            padding: 10px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.9em;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-box input:focus { border-color: #f0c040; box-shadow: 0 0 20px rgba(240, 192, 64, 0.05); }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box .btn-refresh {
+            background: rgba(74, 158, 255, 0.15);
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.85em;
+        }
+        .search-box .btn-refresh:hover { background: rgba(74, 158, 255, 0.25); }
+        .search-box .btn-add {
+            background: rgba(40, 167, 69, 0.15);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            padding: 10px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.85em;
+        }
+        .search-box .btn-add:hover { background: rgba(40, 167, 69, 0.25); }
+
+        /* ========== BUTTONS ========== */
+        .btn-view {
+            background: rgba(74, 158, 255, 0.15);
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+            padding: 4px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75em;
+            transition: all 0.3s;
+        }
+        .btn-view:hover { background: rgba(74, 158, 255, 0.25); }
+        .btn-delete {
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            padding: 4px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75em;
+            transition: all 0.3s;
+        }
+        .btn-delete:hover { background: rgba(220, 53, 69, 0.25); }
+        .btn-download-report {
+            background: rgba(40, 167, 69, 0.15);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            padding: 4px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75em;
+            transition: all 0.3s;
+        }
+        .btn-download-report:hover { background: rgba(40, 167, 69, 0.25); }
+        .btn-download-admin {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            color: #28a745;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.85em;
+        }
+        .btn-download-admin:hover { background: rgba(40, 167, 69, 0.3); }
+
+        /* ========== MODAL ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            padding: 35px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 60px var(--shadow-color);
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { 0% { transform: translateY(30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+        .modal-content h2 { color: #f0c040; margin-bottom: 20px; font-size: 1.3em; }
+        .modal-content label { display: block; color: var(--text-secondary); font-size: 0.85em; margin-bottom: 5px; }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .modal-content input:focus, .modal-content select:focus { border-color: #f0c040; }
+        .modal-content .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .modal-content .modal-actions button {
+            padding: 10px 28px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+        .modal-content .modal-actions .btn-cancel {
+            background: rgba(220, 53, 69, 0.15);
+            color: #dc3545;
+        }
+        .modal-content .modal-actions .btn-cancel:hover { background: rgba(220, 53, 69, 0.25); }
+        .modal-content .modal-actions .btn-confirm {
+            background: linear-gradient(135deg, #f0c040, #e6b800);
+            color: #0a0e1a;
+        }
+        .modal-content .modal-actions .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(240, 192, 64, 0.3);
+        }
+
+        /* ========== LOADING ========== */
+        .loading { text-align: center; padding: 30px; color: var(--text-secondary); }
+        .loading .spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(42, 46, 90, 0.3);
+            border-top: 3px solid #f0c040;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f0c040; }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: var(--text-muted);
+            font-size: 0.75em;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+        .footer span { color: #f0c040; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header { flex-direction: column; padding: 12px 15px; }
+            .header-left { flex-wrap: wrap; justify-content: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .glass-card { padding: 15px; }
+            .search-box { flex-direction: column; }
+            .search-box input { min-width: 100%; }
+            .chart-container { height: 200px; max-height: 200px; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+            table { font-size: 0.7em; }
+            .modal-content { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== BACKGROUND ========== -->
+    <div class="bg-animation">
+        <div class="bg-orbs"></div>
+        <div class="bg-orbs"></div>
+        <div class="bg-orbs"></div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <div class="header-left">
+            <span class="logo">🏹</span>
+            <h1>Sharanga</h1>
+            <span class="badge-admin">👑 Admin</span>
+        </div>
+        <div class="header-right">
+            <div class="theme-toggle" id="themeToggle">
+                <button class="toggle-btn active" data-theme="dark" onclick="setTheme('dark')">🌙</button>
+                <button class="toggle-btn" data-theme="light" onclick="setTheme('light')">☀️</button>
+            </div>
+            <div class="user-info">
+                <span>👤 {{ session.username }}</span>
+                <span class="role">Admin</span>
+            </div>
+            <button class="btn-logout"><a href="/logout">🚪 Logout</a></button>
+        </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <div class="container">
+
+        <!-- ========== STATS ========== -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="label">📱 Total Assets</div>
+                <div class="value gold" id="totalAssets">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">⚠️ Risked Assets</div>
+                <div class="value orange" id="riskedAssets">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">🔴 High Risk</div>
+                <div class="value red" id="highRisk">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">🟡 Medium Risk</div>
+                <div class="value" style="color:#ffc107;" id="mediumRisk">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">🟢 Low Risk</div>
+                <div class="value green" id="lowRisk">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">✅ Safe Assets</div>
+                <div class="value blue" id="safeAssets">0</div>
+            </div>
+        </div>
+
+        <!-- ========== RISK DISTRIBUTION GRAPH ========== -->
+        <div class="glass-card">
+            <div class="card-title">
+                📊 Risk Distribution
+                <span class="badge">Bar Graph</span>
+                <div style="flex:1;"></div>
+                <span style="font-size:0.7em;color:var(--text-muted);" id="graphLastUpdate">Updated: --</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="riskChart"></canvas>
+            </div>
+        </div>
+
+        <!-- ========== ASSETS TABLE ========== -->
+        <div class="glass-card">
+            <div class="card-title">
+                📋 All Assets
+                <span class="badge" id="assetCount">0</span>
+                <div style="flex:1;"></div>
+                <button class="btn-download-admin" onclick="downloadFullReport()">📥 Download Full Report</button>
+                <span style="font-size:0.7em;color:var(--text-muted);margin-left:10px;" id="lastUpdate">Last updated: --</span>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search by Asset #, Device, User, IP..." oninput="filterAssets()">
+                <button class="btn-refresh" onclick="refreshAll()">🔄 Refresh</button>
+                <button class="btn-add" onclick="openAddUserModal()">➕ Add User</button>
+            </div>
+
+            <!-- Table -->
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset #</th>
+                            <th>Device Name</th>
+                            <th>User</th>
+                            <th>Domain</th>
+                            <th>OS</th>
+                            <th>IP</th>
+                            <th>Connection</th>
+                            <th>Risk</th>
+                            <th>Apps</th>
+                            <th>Procs</th>
+                            <th>Last Scan</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetsBody">
+                        <tr><td colspan="12" style="text-align:center;color:var(--text-muted);padding:40px;">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading assets...
+                            </div>
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ========== USERS MANAGEMENT ========== -->
+        <div class="glass-card">
+            <div class="card-title">
+                👥 Users Management
+                <span class="badge" id="userCount">0</span>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Created</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersBody">
+                        <tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:30px;">
+                            <div class="loading">
+                                <div class="spinner"></div>
+                                Loading users...
+                            </div>
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========== MODAL ========== -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <h2>➕ Add New User</h2>
+            <form id="addUserForm">
+                <label>Username *</label>
+                <input type="text" id="newUsername" placeholder="Enter username" required>
+                
+                <label>Password *</label>
+                <input type="password" id="newPassword" placeholder="Enter password" required>
+                
+                <label>Email</label>
+                <input type="email" id="newEmail" placeholder="Enter email">
+                
+                <label>Role</label>
+                <select id="newRole">
+                    <option value="user">👤 User (Read Only)</option>
+                    <option value="admin">👑 Admin (Full Access)</option>
+                </select>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeAddUserModal()">Cancel</button>
+                    <button type="submit" class="btn-confirm">➕ Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <div class="footer">
+        🏹 <span>Sharanga</span> - The Divine Bow of Cyber Defense &nbsp;|&nbsp; ⚡ Admin Panel v2.0
+    </div>
+
+    <script>
+        // ============================================
+        // THEME TOGGLE
+        // ============================================
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('sharanga-theme', theme);
+            document.querySelectorAll('.theme-toggle .toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.theme === theme) btn.classList.add('active');
+            });
+        }
+
+        (function loadTheme() {
+            const saved = localStorage.getItem('sharanga-theme');
+            if (saved) setTheme(saved);
+            else setTheme('dark');
+        })();
+
+        // ============================================
+        // REFRESH ALL
+        // ============================================
+        let allAssets = [];
+        let allUsers = [];
+        let riskChart = null;
+
+        function refreshAll() {
+            document.getElementById('lastUpdate').textContent = 'Last updated: Updating...';
+            loadAssets();
+            loadUsers();
+            setTimeout(() => {
+                document.getElementById('lastUpdate').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+                document.getElementById('graphLastUpdate').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+            }, 1000);
+        }
+
+        // ============================================
+        // LOAD ASSETS
+        // ============================================
+        function loadAssets() {
+            fetch('/api/admin/assets')
+                .then(res => res.json())
+                .then(data => {
+                    allAssets = data || [];
+                    renderAssets(allAssets);
+                    updateStats(allAssets);
+                    updateChart(allAssets);
+                    document.getElementById('assetCount').textContent = allAssets.length;
+                })
+                .catch(err => {
+                    document.getElementById('assetsBody').innerHTML = `
+                        <tr><td colspan="12" style="text-align:center;color:#dc3545;padding:30px;">
+                            ❌ Error loading assets: ${err.message}
+                        </td></tr>
+                    `;
+                });
+        }
+
+        // ============================================
+        // RENDER ASSETS
+        // ============================================
+        function renderAssets(assets) {
+            const tbody = document.getElementById('assetsBody');
+            
+            if (!assets || assets.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="12" style="text-align:center;color:var(--text-muted);padding:30px;">📭 No assets found. Run a scan from the main dashboard.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            assets.forEach(asset => {
+                const risk = asset.risk_score || 0;
+                const riskClass = risk >= 60 ? 'tag-danger' : risk >= 30 ? 'tag-warning' : 'tag-safe';
+                const connType = asset.connection_type || 'Unknown';
+                const connClass = connType === 'Wi-Fi' ? 'tag-wifi' : connType === 'Ethernet' ? 'tag-ethernet' : '';
+
+                html += `
+                    <tr>
+                        <td><strong style="color:#f0c040;">${asset.asset_number || 'N/A'}</strong></td>
+                        <td>${asset.device_name || 'Unknown'}</td>
+                        <td>${asset.username || 'Unknown'}</td>
+                        <td>${asset.domain || 'Unknown'}</td>
+                        <td>${asset.os_name || 'Unknown'} ${asset.os_version || ''}</td>
+                        <td>${asset.ip_address || 'Unknown'}</td>
+                        <td><span class="tag ${connClass}">${connType}</span></td>
+                        <td><span class="tag ${riskClass}">${risk}/100</span></td>
+                        <td>${asset.total_apps || 0}</td>
+                        <td>${asset.total_processes || 0}</td>
+                        <td>${asset.last_scan_time ? new Date(asset.last_scan_time).toLocaleString() : 'Never'}</td>
+                        <td>
+                            <button class="btn-view" onclick="viewAsset('${asset.asset_number}')">📋 View</button>
+                            <button class="btn-download-report" onclick="downloadIndividualReport('${asset.asset_number}')">📥 Report</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // ============================================
+        // FILTER ASSETS
+        // ============================================
+        function filterAssets() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) {
+                renderAssets(allAssets);
+                return;
+            }
+            const filtered = allAssets.filter(a => 
+                (a.asset_number || '').toLowerCase().includes(query) ||
+                (a.device_name || '').toLowerCase().includes(query) ||
+                (a.username || '').toLowerCase().includes(query) ||
+                (a.domain || '').toLowerCase().includes(query) ||
+                (a.ip_address || '').toLowerCase().includes(query)
+            );
+            renderAssets(filtered);
+        }
+
+        // ============================================
+        // UPDATE STATS - Total, Risked, High, Medium, Low, Safe
+        // ============================================
+        function updateStats(assets) {
+            let total = 0, risked = 0, high = 0, medium = 0, low = 0, safe = 0;
+            
+            assets.forEach(a => {
+                total++;
+                const risk = a.risk_score || 0;
+                if (risk >= 60) {
+                    high++;
+                    risked++;
+                } else if (risk >= 30) {
+                    medium++;
+                    risked++;
+                } else if (risk > 0) {
+                    low++;
+                    risked++;
+                } else {
+                    safe++;
+                }
+            });
+            
+            document.getElementById('totalAssets').textContent = total;
+            document.getElementById('riskedAssets').textContent = risked;
+            document.getElementById('highRisk').textContent = high;
+            document.getElementById('mediumRisk').textContent = medium;
+            document.getElementById('lowRisk').textContent = low;
+            document.getElementById('safeAssets').textContent = safe;
+        }
+
+        // ============================================
+        // UPDATE CHART - MODERN GRADIENT BARS WITH ROUNDED CORNERS
+        // ============================================
+        function updateChart(assets) {
+            let high = 0, medium = 0, low = 0, safe = 0;
+            assets.forEach(a => {
+                const risk = a.risk_score || 0;
+                if (risk >= 60) high++;
+                else if (risk >= 30) medium++;
+                else if (risk > 0) low++;
+                else safe++;
+            });
+
+            const ctx = document.getElementById('riskChart').getContext('2d');
+            
+            if (riskChart) {
+                riskChart.destroy();
+            }
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const textColor = isDark ? '#e0e0e0' : '#2a1f3d';
+            const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+
+            riskChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['🔴 High Risk', '🟡 Medium Risk', '🟢 Low Risk', '✅ Safe'],
+                    datasets: [{
+                        label: 'Assets by Risk Level',
+                        data: [high, medium, low, safe],
+                        backgroundColor: [
+                            'rgba(220, 53, 69, 0.85)',
+                            'rgba(255, 193, 7, 0.85)',
+                            'rgba(40, 167, 69, 0.85)',
+                            'rgba(74, 158, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            '#dc3545',
+                            '#ffc107',
+                            '#28a745',
+                            '#4a9eff'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        barPercentage: 0.6,
+                        categoryPercentage: 0.8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: isDark ? 'rgba(10, 14, 26, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+                            titleColor: isDark ? '#e0e0e0' : '#2a1f3d',
+                            bodyColor: isDark ? '#e0e0e0' : '#2a1f3d',
+                            borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                            borderWidth: 1,
+                            cornerRadius: 10,
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.parsed.y;
+                                    let total = high + medium + low + safe;
+                                    let percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                                    return `${value} assets (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: textColor,
+                                stepSize: 1,
+                                font: { size: 11, weight: '500' }
+                            },
+                            grid: {
+                                color: gridColor,
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: textColor,
+                                font: { size: 12, weight: '600' }
+                            },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const total = high + medium + low + safe;
+            document.getElementById('graphLastUpdate').textContent = `Updated: ${new Date().toLocaleTimeString()} | Total: ${total}`;
+        }
+
+        // ============================================
+        // VIEW ASSET - FULL DETAILS
+        // ============================================
+        function viewAsset(assetNumber) {
+            fetch(`/api/admin/assets/${assetNumber}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert('❌ ' + data.error);
+                        return;
+                    }
+                    
+                    let scanData = data.scan_data ? JSON.parse(data.scan_data) : {};
+                    let apps = scanData.installed_apps || [];
+                    let processes = scanData.running_processes || [];
+                    let suspicious = processes.filter(p => p.is_suspicious);
+                    
+                    let details = `📋 ASSET: ${assetNumber}\n\n`;
+                    details += `📱 DEVICE INFO\n`;
+                    details += `  Device: ${data.device_name || 'Unknown'}\n`;
+                    details += `  User: ${data.username || 'Unknown'}\n`;
+                    details += `  Domain: ${data.domain || 'Unknown'}\n`;
+                    details += `  OS: ${data.os_name || 'Unknown'} ${data.os_version || ''}\n`;
+                    details += `  IP: ${data.ip_address || 'Unknown'}\n`;
+                    details += `  MAC: ${data.mac_address || 'Unknown'}\n`;
+                    details += `  Connection: ${data.connection_type || 'Unknown'}\n`;
+                    details += `  RAM: ${data.ram_gb || 0} GB\n`;
+                    details += `  Manufacturer: ${data.system_manufacturer || 'Unknown'}\n`;
+                    details += `  Model: ${data.system_model || 'Unknown'}\n\n`;
+                    
+                    details += `⚙️ SYSTEM CONFIG\n`;
+                    details += `  CPU: ${scanData.system_config?.cpu?.name || 'Unknown'}\n`;
+                    details += `  Cores: ${scanData.system_config?.cpu?.cores || 'Unknown'}\n`;
+                    details += `  BIOS: ${scanData.system_config?.bios?.version || 'Unknown'}\n`;
+                    details += `  Motherboard: ${scanData.system_config?.motherboard?.name || 'Unknown'}\n\n`;
+                    
+                    details += `📦 APPLICATIONS (${apps.length})\n`;
+                    apps.slice(0, 20).forEach((app, i) => {
+                        details += `  ${i+1}. ${app.name} v${app.version}\n`;
+                    });
+                    if (apps.length > 20) details += `  ... and ${apps.length - 20} more\n\n`;
+                    
+                    details += `⚙️ PROCESSES (${processes.length})\n`;
+                    details += `  Suspicious: ${suspicious.length}\n`;
+                    suspicious.slice(0, 10).forEach(p => {
+                        details += `  🔴 ${p.name} (PID: ${p.pid})\n`;
+                    });
+                    if (suspicious.length > 10) details += `  ... and ${suspicious.length - 10} more\n\n`;
+                    
+                    details += `📊 RISK SCORE: ${data.risk_score || 0}/100\n`;
+                    details += `📅 Last Scan: ${data.last_scan_time ? new Date(data.last_scan_time).toLocaleString() : 'Never'}`;
+                    
+                    alert(details);
+                })
+                .catch(err => alert('❌ Error loading asset: ' + err.message));
+        }
+
+        // ============================================
+        // DOWNLOAD INDIVIDUAL REPORT
+        // ============================================
+        function downloadIndividualReport(assetNumber) {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳...';
+            btn.disabled = true;
+            
+            fetch('/api/download-individual-report', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ asset_number: assetNumber })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to generate report');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Sharanga_Report_${assetNumber}_${new Date().toISOString().slice(0,10)}.docx`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert('❌ Error downloading report: ' + error.message);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+
+        // ============================================
+        // DOWNLOAD FULL REPORT (Admin Only)
+        // ============================================
+        function downloadFullReport() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Downloading...';
+            btn.disabled = true;
+            
+            fetch('/api/download-report')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No report found');
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `sharanga_full_report_${new Date().toISOString().slice(0,10)}.docx`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    alert('❌ Error downloading report: ' + error.message);
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        }
+
+        // ============================================
+        // LOAD USERS
+        // ============================================
+        function loadUsers() {
+            fetch('/api/admin/users')
+                .then(res => res.json())
+                .then(data => {
+                    allUsers = data || [];
+                    renderUsers(allUsers);
+                    document.getElementById('userCount').textContent = allUsers.length;
+                })
+                .catch(err => {
+                    document.getElementById('usersBody').innerHTML = `
+                        <tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">
+                            ❌ Error loading users: ${err.message}
+                        </td></tr>
+                    `;
+                });
+        }
+
+        // ============================================
+        // RENDER USERS
+        // ============================================
+        function renderUsers(users) {
+            const tbody = document.getElementById('usersBody');
+            
+            if (!users || users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:20px;">📭 No users found</td></tr>';
+                return;
+            }
+
+            let html = '';
+            users.forEach(user => {
+                const roleClass = user.role === 'admin' ? 'tag-danger' : 'tag-info';
+                html += `
+                    <tr>
+                        <td>${user.id}</td>
+                        <td><strong>${user.username}</strong></td>
+                        <td><span class="tag ${roleClass}">${user.role}</span></td>
+                        <td>${user.email || '-'}</td>
+                        <td>${user.created_at ? new Date(user.created_at).toLocaleString() : 'Unknown'}</td>
+                        <td>
+                            ${user.role !== 'admin' ? `<button class="btn-delete" onclick="deleteUser(${user.id})">🗑️ Delete</button>` : '<span style="color:var(--text-muted);font-size:0.8em;">🔒 Protected</span>'}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // ============================================
+        // ADD USER MODAL
+        // ============================================
+        function openAddUserModal() {
+            document.getElementById('addUserModal').classList.add('show');
+            document.getElementById('addUserForm').reset();
+        }
+
+        function closeAddUserModal() {
+            document.getElementById('addUserModal').classList.remove('show');
+        }
+
+        document.getElementById('addUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('newUsername').value.trim();
+            const password = document.getElementById('newPassword').value.trim();
+            const email = document.getElementById('newEmail').value.trim();
+            const role = document.getElementById('newRole').value;
+
+            if (!username || !password) {
+                alert('❌ Username and password are required!');
+                return;
+            }
+
+            fetch('/api/admin/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, email, role })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert('❌ ' + data.error);
+                    return;
+                }
+                alert('✅ User added successfully!');
+                closeAddUserModal();
+                loadUsers();
+            })
+            .catch(err => alert('❌ Error: ' + err.message));
+        });
+
+        // ============================================
+        // DELETE USER
+        // ============================================
+        function deleteUser(userId) {
+            if (!confirm('⚠️ Are you sure you want to delete this user?')) return;
+
+            fetch(`/api/admin/users/${userId}`, {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert('❌ ' + data.error);
+                    return;
+                }
+                alert('✅ User deleted successfully!');
+                loadUsers();
+            })
+            .catch(err => alert('❌ Error: ' + err.message));
+        }
+
+        // ============================================
+        // CLOSE MODAL ON CLICK OUTSIDE
+        // ============================================
+        document.getElementById('addUserModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAddUserModal();
+            }
+        });
+
+        // ============================================
+        // AUTO REFRESH EVERY 30 SECONDS
+        // ============================================
+        setInterval(() => {
+            loadAssets();
+            loadUsers();
+        }, 30000);
+
+        // ============================================
+        // INIT
+        // ============================================
+        refreshAll();
+    </script>
+</body>
+</html>

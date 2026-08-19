@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.exe
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# Reports & Uploads
+reports/
+uploads/
+*.json
+!*.json
+
+# Environment
+.env
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

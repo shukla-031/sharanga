@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏹 Sharanga - Endpoint Security Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>">
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: rgba(17, 21, 46, 0.7);
+            --bg-card: rgba(20, 24, 52, 0.7);
+            --bg-nav: rgba(10, 14, 26, 0.85);
+            --bg-glass: rgba(17, 21, 46, 0.7);
+            --bg-input: rgba(0, 0, 0, 0.2);
+            --text-primary: #e0e0e0;
+            --text-secondary: #8888bb;
+            --text-muted: #666;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(240, 192, 64, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --scrollbar-track: #0a0e1a;
+            --scrollbar-thumb: #2a2e5a;
+            --card-badge: rgba(42, 46, 90, 0.8);
+            --tag-bg-safe: rgba(40, 167, 69, 0.2);
+            --tag-bg-danger: rgba(220, 53, 69, 0.2);
+            --tag-bg-warning: rgba(255, 193, 7, 0.2);
+            --tag-bg-info: rgba(74, 158, 255, 0.2);
+            --upload-bg: rgba(240, 192, 64, 0.05);
+            --upload-border: rgba(240, 192, 64, 0.3);
+            --file-result-bg: rgba(0, 0, 0, 0.3);
+            --nav-item-bg: rgba(26, 30, 62, 0.4);
+            --nav-item-hover: rgba(240, 192, 64, 0.15);
+            --transition-speed: 0.5s;
+            --bg-animation-opacity: 0.3;
+            --bg-orbs-filter: blur(80px);
+        }
+
+        /* ========== LIGHT THEME ========== */
+        [data-theme="light"] {
+            --bg-primary: #f0ebe3;
+            --bg-secondary: rgba(255, 248, 240, 0.88);
+            --bg-card: rgba(255, 248, 240, 0.85);
+            --bg-nav: rgba(240, 235, 227, 0.92);
+            --bg-glass: rgba(255, 248, 240, 0.88);
+            --bg-input: rgba(0, 0, 0, 0.05);
+            --text-primary: #2a1f3d;
+            --text-secondary: #6b5b7b;
+            --text-muted: #a890a8;
+            --border-color: rgba(100, 80, 120, 0.12);
+            --border-hover: rgba(240, 192, 64, 0.3);
+            --shadow-color: rgba(60, 40, 80, 0.1);
+            --scrollbar-track: #ede5db;
+            --scrollbar-thumb: #b8a0c0;
+            --card-badge: rgba(160, 140, 180, 0.4);
+            --tag-bg-safe: rgba(40, 167, 69, 0.15);
+            --tag-bg-danger: rgba(220, 53, 69, 0.15);
+            --tag-bg-warning: rgba(255, 193, 7, 0.15);
+            --tag-bg-info: rgba(74, 158, 255, 0.15);
+            --upload-bg: rgba(240, 192, 64, 0.08);
+            --upload-border: rgba(240, 192, 64, 0.4);
+            --file-result-bg: rgba(0, 0, 0, 0.05);
+            --nav-item-bg: rgba(200, 180, 210, 0.3);
+            --nav-item-hover: rgba(240, 192, 64, 0.2);
+            --bg-animation-opacity: 0.6;
+            --bg-orbs-filter: blur(60px);
+        }
+
+        /* ========== CURSOR ========== */
+        body {
+            cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='none' stroke='%23f0c040' stroke-width='2'/><circle cx='16' cy='16' r='5' fill='%23f0c040' opacity='0.8'/><circle cx='16' cy='16' r='2' fill='%23ffd700'/></svg>") 16 16, auto;
+            transition: background var(--transition-speed) ease;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a, button, .nav-item, .stat-card, .upload-area, .btn-scan {
+            cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><circle cx='18' cy='18' r='14' fill='none' stroke='%23ffd700' stroke-width='2.5'/><circle cx='18' cy='18' r='6' fill='%23ffd700' opacity='0.9'/><circle cx='18' cy='18' r='3' fill='%23f0c040'/></svg>") 18 18, pointer;
+        }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f0c040; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* ========== BACKGROUND ========== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            transition: all var(--transition-speed) ease;
+        }
+        .bg-orbs {
+            position: absolute;
+            border-radius: 50%;
+            filter: var(--bg-orbs-filter);
+            opacity: var(--bg-animation-opacity);
+            animation: float 20s infinite ease-in-out;
+            transition: all var(--transition-speed) ease;
+        }
+        .bg-orbs:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: #f0c040;
+            top: -10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+        .bg-orbs:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: #4a9eff;
+            bottom: -10%;
+            right: -5%;
+            animation-delay: -7s;
+        }
+        .bg-orbs:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        [data-theme="light"] .bg-orbs:nth-child(1) {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #4a9eff 0%, #2d7dd2 40%, #1a5a9e 100%);
+            top: -15%;
+            left: -10%;
+            opacity: 0.25;
+            animation-duration: 25s;
+        }
+        [data-theme="light"] .bg-orbs:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #f0c040 0%, #e6a800 40%, #cc8800 100%);
+            bottom: -15%;
+            right: -10%;
+            opacity: 0.2;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+        [data-theme="light"] .bg-orbs:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #28a745 0%, #1a8a3a 40%, #0d6b2a 100%);
+            top: 40%;
+            left: 30%;
+            opacity: 0.15;
+            animation-duration: 35s;
+            animation-delay: -10s;
+        }
+
+        [data-theme="light"] .feather-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(74, 158, 255, 0.3), transparent);
+            border-radius: 50%;
+            animation: float-particle 15s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+        [data-theme="light"] .feather-particle:nth-child(4) { left: 10%; top: 20%; width: 6px; height: 6px; animation-duration: 18s; animation-delay: -3s; }
+        [data-theme="light"] .feather-particle:nth-child(5) { left: 85%; top: 70%; width: 5px; height: 5px; animation-duration: 22s; animation-delay: -7s; }
+        [data-theme="light"] .feather-particle:nth-child(6) { left: 50%; top: 10%; width: 8px; height: 8px; animation-duration: 20s; animation-delay: -12s; }
+        [data-theme="light"] .feather-particle:nth-child(7) { left: 70%; top: 30%; width: 3px; height: 3px; animation-duration: 25s; animation-delay: -5s; }
+        [data-theme="light"] .feather-particle:nth-child(8) { left: 30%; top: 80%; width: 7px; height: 7px; animation-duration: 16s; animation-delay: -9s; }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            25% { transform: translate(30px, -40px) scale(1.5); opacity: 0.6; }
+            50% { transform: translate(-20px, -80px) scale(0.8); opacity: 0.2; }
+            75% { transform: translate(40px, -30px) scale(1.2); opacity: 0.5; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 40px) scale(0.9); }
+            75% { transform: translate(30px, -20px) scale(1.05); }
+        }
+        
+        /* ========== HEADER ========== */
+        .header {
+            position: relative;
+            z-index: 100;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px var(--shadow-color);
+            flex-wrap: wrap;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-container {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-svg {
+            width: 45px;
+            height: 45px;
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(240, 192, 64, 0.3)); }
+            50% { filter: drop-shadow(0 0 30px rgba(240, 192, 64, 0.8)) drop-shadow(0 0 60px rgba(240, 192, 64, 0.3)); }
+        }
+        .logo-ring {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid rgba(240, 192, 64, 0.2);
+            animation: spin-ring 8s linear infinite;
+        }
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: #f0c040;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #f0c040;
+        }
+        @keyframes spin-ring {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .header-title h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0c040, #ffd700, #f0c040);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .header-title .subtitle {
+            font-size: 0.65em;
+            color: var(--text-secondary);
+            -webkit-text-fill-color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color var(--transition-speed) ease;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        /* ========== THEME TOGGLE ========== */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        .theme-toggle:hover { border-color: #f0c040; }
+        .theme-toggle .toggle-btn {
+            padding: 4px 12px;
+            border-radius: 25px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.7em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .theme-toggle .toggle-btn.active {
+            background: #f0c040;
+            color: #0a0e1a;
+            box-shadow: 0 2px 15px rgba(240, 192, 64, 0.3);
+        }
+        .theme-toggle .toggle-btn:hover {
+            color: var(--text-primary);
+        }
+        .theme-toggle .toggle-btn.active:hover {
+            color: #0a0e1a;
+        }
+
+        .network-icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--bg-card);
+            padding: 4px 12px 4px 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.75em;
+            color: var(--text-secondary);
+            transition: all var(--transition-speed) ease;
+        }
+        .network-icon .icon {
+            font-size: 1.1em;
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+        .network-icon .icon.wifi { color: #4a9eff; }
+        .network-icon .icon.ethernet { color: #28a745; }
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            transition: all var(--transition-speed) ease;
+        }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: dot-pulse 2s infinite;
+        }
+        .status-dot.green { background: #28a745; box-shadow: 0 0 15px rgba(40, 167, 69, 0.5); }
+        .status-dot.yellow { background: #ffc107; box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); }
+        .status-dot.red { background: #dc3545; box-shadow: 0 0 15px rgba(220, 53, 69, 0.5); }
+        @keyframes dot-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+        
+        .btn-scan {
+            background: linear-gradient(135deg, #f0c040, #e6b800);
+            color: #0a0e1a;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 20px rgba(240, 192, 64, 0.2);
+        }
+        .btn-scan:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(240, 192, 64, 0.4);
+        }
+        .btn-scan:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* ========== NAVIGATION ========== */
+        .nav-menu {
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: var(--bg-nav);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            transition: all var(--transition-speed) ease;
+        }
+        .nav-menu::-webkit-scrollbar { height: 3px; }
+        .nav-menu::-webkit-scrollbar-thumb { background: #f0c040; border-radius: 10px; }
+        
+        .nav-item {
+            background: var(--nav-item-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+        .nav-item:hover {
+            background: var(--nav-item-hover);
+            border-color: rgba(240, 192, 64, 0.3);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .nav-item.active {
+            background: rgba(240, 192, 64, 0.2);
+            border-color: #f0c040;
+            color: #f0c040;
+            box-shadow: 0 0 20px rgba(240, 192, 64, 0.1);
+        }
+        .nav-item .icon { font-size: 1em; }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 25px;
+        }
+        
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.3s, background var(--transition-speed) ease, border var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: '🏹';
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            font-size: 60px;
+            opacity: 0.03;
+            transform: rotate(30deg);
+        }
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 8px 40px var(--shadow-color);
+        }
+        .card-title {
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+        .card-title .badge {
+            background: var(--card-badge);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.65em;
+            color: var(--text-secondary);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s, background var(--transition-speed) ease, border var(--transition-speed) ease;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .stat-card::after {
+            content: '🏹';
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            font-size: 24px;
+            opacity: 0.05;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(240, 192, 64, 0.3);
+            box-shadow: 0 8px 30px var(--shadow-color);
+        }
+        .stat-card .label {
+            font-size: 0.65em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color var(--transition-speed) ease;
+        }
+        .stat-card .value {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 2px 0;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+        .stat-card .value.gold {
+            background: linear-gradient(135deg, #f0c040, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card .value.green { color: #28a745; }
+        .stat-card .value.red { color: #dc3545; }
+        .stat-card .value.blue { color: #4a9eff; }
+        
+        .table-wrap { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82em;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+        th {
+            text-align: left;
+            padding: 6px 10px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.6em;
+            letter-spacing: 0.5px;
+            transition: all var(--transition-speed) ease;
+        }
+        td {
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            transition: all var(--transition-speed) ease;
+        }
+        tr:hover td {
+            background: rgba(240, 192, 64, 0.05);
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.6em;
+            font-weight: 600;
+        }
+        .tag-safe { background: var(--tag-bg-safe); color: #28a745; }
+        .tag-danger { background: var(--tag-bg-danger); color: #dc3545; }
+        .tag-warning { background: var(--tag-bg-warning); color: #ffc107; }
+        .tag-info { background: var(--tag-bg-info); color: #4a9eff; }
+        
+        .risk-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .risk-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6em;
+            font-weight: 700;
+            border: 4px solid;
+            flex-shrink: 0;
+            animation: risk-pulse 2s infinite ease-in-out;
+        }
+        @keyframes risk-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .risk-circle.low { border-color: #28a745; color: #28a745; background: rgba(40, 167, 69, 0.1); }
+        .risk-circle.medium { border-color: #ffc107; color: #ffc107; background: rgba(255, 193, 7, 0.1); }
+        .risk-circle.high { border-color: #dc3545; color: #dc3545; background: rgba(220, 53, 69, 0.1); animation-duration: 1s; }
+        
+        .network-display {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 15px;
+            background: var(--bg-input);
+            border-radius: 10px;
+            flex-wrap: wrap;
+            transition: background var(--transition-speed) ease;
+        }
+        .network-display .big-icon {
+            font-size: 2.5em;
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+        .network-display .big-icon.wifi { color: #4a9eff; }
+        .network-display .big-icon.ethernet { color: #28a745; }
+        .network-display .info { flex: 1; }
+        .network-display .info .label { font-size: 0.65em; color: var(--text-secondary); }
+        .network-display .info .value { font-size: 1em; font-weight: 600; color: var(--text-primary); }
+        
+        .upload-area {
+            border: 2px dashed var(--upload-border);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: var(--upload-bg);
+        }
+        .upload-area:hover {
+            border-color: #f0c040;
+            background: var(--upload-bg);
+        }
+        .upload-area.dragover {
+            border-color: #f0c040;
+            background: rgba(240, 192, 64, 0.1);
+        }
+        .upload-area .icon { font-size: 2em; margin-bottom: 8px; }
+        .upload-area .text { color: var(--text-secondary); font-size: 0.85em; }
+        .upload-area .text strong { color: #f0c040; }
+        #fileInput { display: none; }
+        
+        .file-result { margin-top: 12px; display: none; }
+        .file-result.show { display: block; }
+        .file-result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+        }
+        .file-result-item {
+            background: var(--file-result-bg);
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: background var(--transition-speed) ease;
+        }
+        .file-result-item .label {
+            font-size: 0.55em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            transition: color var(--transition-speed) ease;
+        }
+        .file-result-item .value {
+            font-size: 0.8em;
+            font-weight: 500;
+            word-break: break-all;
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .loading-overlay {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .loading-overlay .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(42, 46, 90, 0.3);
+            border-top: 4px solid #f0c040;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 12px;
+            color: var(--text-muted);
+            font-size: 0.75em;
+            border-top: 1px solid var(--border-color);
+            margin-top: 15px;
+            transition: all var(--transition-speed) ease;
+        }
+        .footer span { color: #f0c040; }
+        
+        .scan-time {
+            color: var(--text-muted);
+            font-size: 0.7em;
+            text-align: right;
+            margin-top: 6px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .weather-display {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .weather-icon {
+            font-size: 2.5em;
+            min-width: 50px;
+            text-align: center;
+            animation: pulse-icon 2s infinite ease-in-out;
+        }
+        .weather-temp {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #4a9eff;
+        }
+        .weather-temp small {
+            font-size: 0.5em;
+            color: var(--text-secondary);
+            font-weight: 400;
+            transition: color var(--transition-speed) ease;
+        }
+        .weather-condition { 
+            font-size: 0.9em; 
+            color: var(--text-secondary);
+            transition: color var(--transition-speed) ease;
+        }
+        .weather-location { 
+            font-size: 0.75em; 
+            color: var(--text-muted);
+            transition: color var(--transition-speed) ease;
+        }
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 5px;
+            flex: 1;
+            background: var(--bg-input);
+            padding: 8px 12px;
+            border-radius: 8px;
+            min-width: 160px;
+            transition: background var(--transition-speed) ease;
+        }
+        .weather-details .item .label { 
+            font-size: 0.5em; 
+            color: var(--text-muted);
+            transition: color var(--transition-speed) ease;
+        }
+        .weather-details .item .val { 
+            font-weight: 600; 
+            font-size: 0.8em; 
+            color: var(--text-primary);
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .section-anchor { scroll-margin-top: 70px; }
+        
+        .file-result-grid .full-width { grid-column: 1 / -1; }
+        .file-result-grid .verdict-big { font-size: 1.1em; font-weight: 700; }
+        
+        .btn-show-more {
+            background: rgba(240, 192, 64, 0.15);
+            border: 1px solid rgba(240, 192, 64, 0.3);
+            color: #f0c040;
+            padding: 6px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.8em;
+        }
+        .btn-show-more:hover {
+            background: rgba(240, 192, 64, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; padding: 12px 15px; }
+            .header-left { flex-wrap: wrap; justify-content: center; }
+            .header-title h1 { font-size: 1.3em; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .risk-section { flex-direction: column; align-items: center; }
+            .nav-menu { padding: 4px 12px; }
+            .nav-item { font-size: 0.65em; padding: 3px 10px; }
+            .theme-toggle .toggle-btn { padding: 3px 8px; font-size: 0.6em; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== BACKGROUND ========== -->
+    <div class="bg-animation">
+        <div class="bg-orbs"></div>
+        <div class="bg-orbs"></div>
+        <div class="bg-orbs"></div>
+        <div class="feather-particle"></div>
+        <div class="feather-particle"></div>
+        <div class="feather-particle"></div>
+        <div class="feather-particle"></div>
+        <div class="feather-particle"></div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-container">
+                <div class="logo-ring"></div>
+                <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 L50 10Z" stroke="#f0c040" stroke-width="2" fill="none"/>
+                    <path d="M50 25 L70 35 L70 65 L50 75 L30 65 L30 35 L50 25Z" stroke="#f0c040" stroke-width="2" fill="none"/>
+                    <circle cx="50" cy="50" r="8" fill="#f0c040" opacity="0.8"/>
+                    <circle cx="50" cy="50" r="4" fill="#ffd700"/>
+                    <path d="M50 10 L50 25 M50 75 L50 90 M10 30 L25 35 M75 65 L90 70 M10 70 L25 65 M75 35 L90 30 M30 10 L35 25 M65 10 L70 25" stroke="#f0c040" stroke-width="1.5" opacity="0.3"/>
+                </svg>
+            </div>
+            <div class="header-title">
+                <h1>Sharanga</h1>
+                <div class="subtitle">⚔️ The Divine Bow of Cyber Defense</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="theme-toggle" id="themeToggle">
+                <button class="toggle-btn active" data-theme="dark" onclick="setTheme('dark')">🌙 Dark</button>
+                <button class="toggle-btn" data-theme="light" onclick="setTheme('light')">☀️ Light</button>
+            </div>
+            <div class="network-icon" id="headerNetwork">
+                <span class="icon">📶</span>
+                <span>Wi-Fi</span>
+            </div>
+            <div class="status-badge">
+                <span class="status-dot green" id="statusDot"></span>
+                <span id="statusText">Ready</span>
+            </div>
+            <button class="btn-scan" id="scanBtn" onclick="startScan()">🔍 Scan Now</button>
+            <button class="btn-logout" style="background:rgba(220,53,69,0.15);border:1px solid rgba(220,53,69,0.2);color:#dc3545;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:0.75em;transition:all 0.3s;" onmouseover="this.style.background='rgba(220,53,69,0.25)'" onmouseout="this.style.background='rgba(220,53,69,0.15)'" onclick="window.location.href='/logout'">🚪 Logout</button>
+        </div>
+    </header>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav-menu" id="navMenu">
+        <span class="nav-item active" onclick="scrollToSection('statsSection')">
+            <span class="icon">📊</span> Dashboard
+        </span>
+        <span class="nav-item" onclick="scrollToSection('deviceSection')">
+            <span class="icon">📱</span> Device
+        </span>
+        <span class="nav-item" onclick="scrollToSection('configSection')">
+            <span class="icon">⚙️</span> Config
+        </span>
+        <span class="nav-item" onclick="scrollToSection('networkSection')">
+            <span class="icon">🌐</span> Network
+        </span>
+        <span class="nav-item" onclick="scrollToSection('riskSection')">
+            <span class="icon">🎯</span> Risk
+        </span>
+        <span class="nav-item" onclick="scrollToSection('appsSection')">
+            <span class="icon">📦</span> Apps
+        </span>
+        <span class="nav-item" onclick="scrollToSection('processSection')">
+            <span class="icon">⚙️</span> Processes
+        </span>
+        <span class="nav-item" onclick="scrollToSection('uninstallSection')">
+            <span class="icon">🗑️</span> Uninstalled
+        </span>
+        <span class="nav-item" onclick="scrollToSection('fileUploadSection')">
+            <span class="icon">📤</span> File Scan
+        </span>
+    </nav>
+
+    <!-- ========== MAIN ========== -->
+    <div class="container">
+
+        <div class="loading-overlay" id="loading">
+            <div class="spinner"></div>
+            <h2>🔍 Scanning Your System...</h2>
+            <p style="color: var(--text-secondary);">Collecting device information, system config, and running processes</p>
+        </div>
+
+        <div id="results"></div>
+
+        <!-- ========== FILE UPLOAD ========== -->
+        <div class="glass-card section-anchor" id="fileUploadSection" style="margin-top: 15px;">
+            <div class="card-title">📤 Suspicious File Scanner <span class="badge">🏹</span></div>
+            <p style="color: var(--text-secondary);margin-bottom:10px;font-size:0.85em;">Upload any suspicious file (PDF, EXE, DOC, Scripts, Images) for instant threat analysis</p>
+            <div class="upload-area" id="uploadArea">
+                <div class="icon">📁</div>
+                <div class="text">
+                    <strong>Click to upload</strong> or drag & drop any file<br>
+                    <small style="color: var(--text-muted);">Max file size: 100MB</small>
+                </div>
+                <input type="file" id="fileInput" onchange="uploadFile(this)">
+            </div>
+            <div class="file-result" id="fileResult">
+                <h4 style="margin-bottom:10px;color:var(--text-primary);font-size:0.95em;">📊 File Analysis Result</h4>
+                <div class="file-result-grid" id="fileResultGrid"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        🏹 <span>Sharanga</span> - The Divine Bow of Cyber Defense &nbsp;|&nbsp; ⚡ Protecting your digital kingdom
+    </div>
+
+    <script>
+        // ============================================
+        // THEME TOGGLE
+        // ============================================
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('sharanga-theme', theme);
+            
+            document.querySelectorAll('.theme-toggle .toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.theme === theme) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        (function loadTheme() {
+            const saved = localStorage.getItem('sharanga-theme');
+            if (saved) {
+                setTheme(saved);
+            } else {
+                setTheme('dark');
+            }
+        })();
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.textContent.trim().toLowerCase().includes(id.replace('Section', '').toLowerCase())) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        let sections = ['statsSection', 'deviceSection', 'configSection', 'networkSection', 
+                       'riskSection', 'appsSection', 'processSection', 'uninstallSection', 'fileUploadSection'];
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= 120) {
+                        current = id;
+                    }
+                }
+            });
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            if (current) {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    if (item.textContent.trim().toLowerCase().includes(current.replace('Section', '').toLowerCase())) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // ============================================
+        // FILE UPLOAD
+        // ============================================
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                uploadFile(fileInput);
+            }
+        });
+        
+        function uploadFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const resultDiv = document.getElementById('fileResult');
+            const resultGrid = document.getElementById('fileResultGrid');
+            
+            resultDiv.classList.remove('show');
+            resultGrid.innerHTML = '<p style="color:#f0c040;">⏳ Scanning file...</p>';
+            resultDiv.classList.add('show');
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            fetch('/api/scan-file', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    resultGrid.innerHTML = `<p style="color:#dc3545;">❌ ${data.error}</p>`;
+                    return;
+                }
+                const verdictColor = data.threat_level === 'HIGH' ? '#dc3545' : data.threat_level === 'MEDIUM' ? '#ffc107' : '#28a745';
+                
+                resultGrid.innerHTML = `
+                    <div class="file-result-item">
+                        <div class="label">📄 File Name</div>
+                        <div class="value">${data.filename}</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">📂 Type</div>
+                        <div class="value">${data.file_extension || 'Unknown'}</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">📏 Size</div>
+                        <div class="value">${data.file_size}</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">🔑 MD5</div>
+                        <div class="value" style="font-size:0.6em;word-break:break-all;">${data.md5}</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">🔐 SHA256</div>
+                        <div class="value" style="font-size:0.6em;word-break:break-all;">${data.sha256}</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">🎯 Threat Score</div>
+                        <div class="value" style="color:${verdictColor};font-weight:700;">${data.threat_score}/100</div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">⚠️ Risk Level</div>
+                        <div class="value"><span class="tag ${data.threat_level === 'HIGH' ? 'tag-danger' : data.threat_level === 'MEDIUM' ? 'tag-warning' : 'tag-safe'}">${data.threat_level}</span></div>
+                    </div>
+                    <div class="file-result-item">
+                        <div class="label">⚖️ Verdict</div>
+                        <div class="value verdict-big" style="color:${verdictColor};">${data.verdict}</div>
+                    </div>
+                    <div class="file-result-item full-width">
+                        <div class="label">📝 Risk Reason</div>
+                        <div class="value">${data.risk_reason || 'No specific risk identified'}</div>
+                    </div>
+                `;
+                resultDiv.classList.add('show');
+            })
+            .catch(error => {
+                resultGrid.innerHTML = `<p style="color:#dc3545;">❌ Error scanning file: ${error.message}</p>`;
+            });
+            input.value = '';
+        }
+        
+        // ============================================
+        // TOGGLE APPS
+        // ============================================
+        let appsVisible = false;
+
+        function toggleApps() {
+            const rows = document.querySelectorAll('#appTableBody .app-row');
+            const btn = document.getElementById('appToggleBtn');
+            const totalApps = rows.length;
+            
+            appsVisible = !appsVisible;
+            
+            rows.forEach((row, index) => {
+                if (appsVisible) {
+                    row.style.display = 'table-row';
+                } else {
+                    if (index >= 15) {
+                        row.style.display = 'none';
+                    } else {
+                        row.style.display = 'table-row';
+                    }
+                }
+            });
+            
+            if (appsVisible) {
+                btn.innerHTML = `📂 Show Less (${totalApps})`;
+                btn.style.background = 'rgba(220,53,69,0.15)';
+                btn.style.borderColor = 'rgba(220,53,69,0.3)';
+                btn.style.color = '#dc3545';
+            } else {
+                btn.innerHTML = `📂 Show All (${totalApps})`;
+                btn.style.background = 'rgba(240,192,64,0.15)';
+                btn.style.borderColor = 'rgba(240,192,64,0.3)';
+                btn.style.color = '#f0c040';
+            }
+        }
+
+        // ============================================
+        // SCAN FUNCTIONS
+        // ============================================
+        window.onload = function() {
+            loadLastReport();
+        };
+        
+        function startScan() {
+            const btn = document.getElementById('scanBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const statusText = document.getElementById('statusText');
+            const statusDot = document.getElementById('statusDot');
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ Scanning...';
+            loading.style.display = 'block';
+            results.innerHTML = '';
+            statusText.textContent = 'Scanning...';
+            statusDot.className = 'status-dot yellow';
+            
+            fetch('/api/scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Server error: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                loading.style.display = 'none';
+                btn.disabled = false;
+                btn.textContent = '🔍 Scan Now';
+                statusText.textContent = 'Last scan: ' + new Date().toLocaleTimeString();
+                statusDot.className = 'status-dot green';
+                displayResults(data);
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                btn.disabled = false;
+                btn.textContent = '🔍 Scan Now';
+                statusText.textContent = 'Error';
+                statusDot.className = 'status-dot red';
+                results.innerHTML = `
+                    <div class="glass-card" style="border-color:#dc3545;">
+                        <h3 style="color:#dc3545;">❌ Error Scanning System</h3>
+                        <p>${error.message}</p>
+                        <p style="color:#888;font-size:0.85em;margin-top:10px;">Please check the server logs for more details.</p>
+                    </div>
+                `;
+                console.error('Scan error:', error);
+            });
+        }
+        
+        function loadLastReport() {
+            fetch('/api/last-report')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        displayResults(data);
+                        document.getElementById('statusText').textContent = 'Last scan: ' + new Date().toLocaleTimeString();
+                    }
+                })
+                .catch(() => {});
+        }
+
+        // ============================================
+        // DISPLAY RESULTS - FIXED (Error Handling)
+        // ============================================
+        function displayResults(data) {
+            const container = document.getElementById('results');
+            
+            // ========== SAFE DATA ACCESS ==========
+            const stats = data.stats || {};
+            const device = data.device || {};
+            const config = data.system_config || {};
+            const network = data.network || {};
+            const weather = config.weather || {};
+            const assetNumber = data.asset_number || device.device_name || 'Unknown';
+            
+            // Safe stats with fallbacks
+            const totalApps = stats.total_apps || 0;
+            const totalProcesses = stats.total_processes || 0;
+            const suspiciousProcesses = stats.suspicious_processes || 0;
+            const riskScore = stats.risk_score || 0;
+            
+            // Safe arrays
+            const installedApps = data.installed_apps || [];
+            const runningProcesses = data.running_processes || [];
+            const uninstalledApps = data.uninstalled_apps || [];
+            
+            // Safe configs
+            const cpu = config.cpu || {};
+            const memory = config.memory || {};
+            const motherboard = config.motherboard || {};
+            const bios = config.bios || {};
+            const gpus = config.gpus || [];
+            const disks = config.disks || [];
+            
+            // Calculate risk level
+            const riskLevel = riskScore < 30 ? 'LOW' : riskScore < 60 ? 'MEDIUM' : 'HIGH';
+            const riskClass = riskLevel.toLowerCase();
+            
+            // Suspicious and scripts
+            const suspicious = runningProcesses.filter(p => p && p.is_suspicious);
+            const scripts = runningProcesses.filter(p => p && p.is_script);
+            
+            // Network
+            const connType = network.connection_type || 'Unknown';
+            const connIcon = connType === 'Wi-Fi' ? '📶' : connType === 'Ethernet' ? '🔌' : '❓';
+            const connClass = connType === 'Wi-Fi' ? 'wifi' : connType === 'Ethernet' ? 'ethernet' : '';
+            
+            document.getElementById('headerNetwork').innerHTML = `
+                <span class="icon ${connClass}">${connIcon}</span>
+                <span>${connType}</span>
+            `;
+            
+            // Weather
+            const weatherHtml = weather && weather.temperature ? `
+                <div class="glass-card section-anchor" id="weatherSection">
+                    <div class="card-title">🌤️ Weather & Location <span class="badge">🏹</span></div>
+                    <div class="weather-display">
+                        <div class="weather-icon">${weather.icon || '🌤️'}</div>
+                        <div style="flex:1;min-width:100px;">
+                            <div class="weather-temp">
+                                ${weather.temperature || '--°C'}
+                                <small>${weather.feels_like ? 'Feels like ' + weather.feels_like : ''}</small>
+                            </div>
+                            <div class="weather-condition">${weather.condition || 'Unknown'}</div>
+                            <div class="weather-location">📍 ${weather.city || 'Unknown location'}</div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="item"><div class="label">💧 Humidity</div><div class="val">${weather.humidity || '--%'}</div></div>
+                            <div class="item"><div class="label">💨 Wind</div><div class="val">${weather.wind_speed || '-- km/h'}</div></div>
+                            <div class="item"><div class="label">🌡️ Pressure</div><div class="val">${weather.pressure || '-- hPa'}</div></div>
+                            <div class="item"><div class="label">👁️ Visibility</div><div class="val">${weather.visibility || '-- km'}</div></div>
+                            <div class="item"><div class="label">🌅 Sunrise</div><div class="val">${weather.sunrise || '--:--'}</div></div>
+                            <div class="item"><div class="label">🌇 Sunset</div><div class="val">${weather.sunset || '--:--'}</div></div>
+                        </div>
+                    </div>
+                </div>
+            ` : '';
+            
+            // Build apps rows
+            const appRows = installedApps.map((app, i) => `
+                <tr class="app-row" style="${i >= 15 ? 'display:none;' : ''}">
+                    <td>${i+1}</td>
+                    <td>${app.name || 'Unknown'}</td>
+                    <td>${app.version || 'Unknown'}</td>
+                </tr>
+            `).join('');
+            
+            let html = `
+                <!-- STATS -->
+                <div class="stats-grid section-anchor" id="statsSection">
+                    <div class="stat-card">
+                        <div class="label">📱 Asset</div>
+                        <div class="value gold">${assetNumber}</div>
+                        <div style="font-size:0.75em;color:var(--text-secondary);">${device.device_name || 'Unknown'}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">📦 Installed Apps</div>
+                        <div class="value blue">${totalApps}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">⚙️ Running Processes</div>
+                        <div class="value blue">${totalProcesses}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">🔴 Suspicious</div>
+                        <div class="value ${suspiciousProcesses > 0 ? 'red' : 'green'}">${suspiciousProcesses}</div>
+                    </div>
+                </div>
+                
+                ${weatherHtml}
+                
+                <!-- DEVICE INFO -->
+                <div class="glass-card section-anchor" id="deviceSection">
+                    <div class="card-title">📱 Device Information <span class="badge">🏹</span></div>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><td style="width:160px;">Asset Number</td><td><strong style="color:#f0c040;">${assetNumber}</strong></td></tr>
+                            <tr><td>Device Name</td><td><strong>${device.device_name || 'Unknown'}</strong></td></tr>
+                            <tr><td>User Name</td><td><strong>${device.username || 'Unknown'}</strong></td></tr>
+                            <tr><td>Domain</td><td><strong>${device.domain || 'Unknown'}</strong></td></tr>
+                            <tr><td>Domain Joined</td><td><span class="tag ${device.is_domain_joined ? 'tag-safe' : 'tag-danger'}">${device.is_domain_joined ? '✅ Yes' : '❌ No'}</span></td></tr>
+                            <tr><td>Operating System</td><td><strong>${device.os_name || 'Unknown'} ${device.os_release || ''}</strong></td></tr>
+                            <tr><td>System Manufacturer</td><td><strong>${device.system_manufacturer || 'Unknown'}</strong></td></tr>
+                            <tr><td>System Model</td><td><strong>${device.system_model || 'Unknown'}</strong></td></tr>
+                            <tr><td>IP Address</td><td><strong>${device.ip_address || 'Unknown'}</strong></td></tr>
+                            <tr><td>RAM</td><td><strong>${device.ram_gb || 0} GB</strong></td></tr>
+                            <tr><td>Processor</td><td><strong>${device.processor || 'Unknown'}</strong></td></tr>
+                            <tr><td>Uptime</td><td><strong>${config.uptime || 'Unknown'}</strong></td></tr>
+                            <tr><td>Boot Time</td><td><strong>${config.boot_time || 'Unknown'}</strong></td></tr>
+                            ${config.battery_percent ? `<tr><td>Battery</td><td><span class="tag tag-info">${config.battery_percent}% (${config.battery_status || 'Unknown'})</span></td></tr>` : ''}
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- SYSTEM CONFIG -->
+                <div class="glass-card section-anchor" id="configSection">
+                    <div class="card-title">⚙️ System Configuration <span class="badge">🏹</span></div>
+                    
+                    <!-- CPU -->
+                    <h4 style="margin-top:10px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">🖥️ CPU</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><td style="width:160px;">CPU Name</td><td><strong>${cpu.name || 'Unknown'}</strong></td></tr>
+                            <tr><td>Physical Cores</td><td><strong>${cpu.cores || 'Unknown'}</strong></td></tr>
+                            <tr><td>Logical Processors</td><td><strong>${cpu.logical || 'Unknown'}</strong></td></tr>
+                            <tr><td>Max Clock Speed</td><td><strong>${cpu.max_clock || 'Unknown'}</strong></td></tr>
+                            <tr><td>Current Clock Speed</td><td><strong>${cpu.current_clock || 'Unknown'}</strong></td></tr>
+                            <tr><td>Current Usage</td><td><strong>${cpu.usage || 0}%</strong></td></tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Memory -->
+                    <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">💾 Memory</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><td style="width:160px;">Total RAM</td><td><strong>${memory.total_gb || 0} GB</strong></td></tr>
+                            <tr><td>Used RAM</td><td><strong>${memory.used_gb || 0} GB (${memory.used_percent || 0}%)</strong></td></tr>
+                            <tr><td>Available RAM</td><td><strong>${memory.available_gb || 0} GB</strong></td></tr>
+                        </table>
+                    </div>
+                    
+                    <!-- Motherboard -->
+                    <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">🖥️ Motherboard</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><td style="width:160px;">Motherboard Name</td><td><strong>${motherboard.name || 'Unknown'}</strong></td></tr>
+                            <tr><td>Manufacturer</td><td><strong>${motherboard.manufacturer || 'Unknown'}</strong></td></tr>
+                        </table>
+                    </div>
+                    
+                    <!-- BIOS -->
+                    <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">🔧 BIOS</h4>
+                    <div class="table-wrap">
+                        <table>
+                            <tr><td style="width:160px;">BIOS Version</td><td><strong>${bios.version || 'Unknown'}</strong></td></tr>
+                            <tr><td>Manufacturer</td><td><strong>${bios.manufacturer || 'Unknown'}</strong></td></tr>
+                        </table>
+                    </div>
+                    
+                    <!-- GPU -->
+                    ${gpus.length > 0 ? `
+                        <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">🎮 Graphics</h4>
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>GPU Name</th><th>VRAM</th><th>Driver</th></tr>
+                                ${gpus.map(gpu => `
+                                    <tr>
+                                        <td><strong>${gpu.name || 'Unknown'}</strong></td>
+                                        <td>${gpu.ram || 'Unknown'}</td>
+                                        <td>${gpu.driver || 'Unknown'}</td>
+                                    </tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- Disks -->
+                    ${disks.length > 0 ? `
+                        <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">💾 Disk Drives</h4>
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>Drive</th><th>Total</th><th>Used</th><th>Free</th><th>Usage</th></tr>
+                                ${disks.map(disk => `
+                                    <tr>
+                                        <td><strong>${disk.drive}</strong></td>
+                                        <td>${disk.total_gb} GB</td>
+                                        <td>${disk.used_gb} GB</td>
+                                        <td>${disk.free_gb} GB</td>
+                                        <td><span class="tag ${disk.used_percent > 80 ? 'tag-danger' : disk.used_percent > 60 ? 'tag-warning' : 'tag-safe'}">${disk.used_percent}%</span></td>
+                                    </tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                    ` : ''}
+                    
+                    ${config.computer_type ? `
+                        <div style="margin-top:12px;">
+                            <span class="tag tag-info">💻 Computer Type: ${config.computer_type}</span>
+                            ${config.is_virtual_machine ? '<span class="tag tag-warning" style="margin-left:8px;">🖥️ Virtual Machine</span>' : ''}
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <!-- NETWORK -->
+                <div class="glass-card section-anchor" id="networkSection">
+                    <div class="card-title">🌐 Network Information <span class="badge">🏹</span></div>
+                    <div class="network-display">
+                        <div class="big-icon ${connClass}">${connIcon}</div>
+                        <div class="info">
+                            <div class="label">Connection Type</div>
+                            <div class="value">${connType}</div>
+                            ${connType === 'Wi-Fi' ? `
+                                <div style="margin-top:3px;color:var(--text-secondary);font-size:0.8em;">
+                                    📡 SSID: <strong>${network.ssid || 'Unknown'}</strong>
+                                </div>
+                            ` : ''}
+                            ${connType === 'Ethernet' && network.speed ? `
+                                <div style="margin-top:3px;color:var(--text-secondary);font-size:0.8em;">
+                                    ⚡ Speed: <strong>${network.speed}</strong>
+                                </div>
+                            ` : ''}
+                            <div style="margin-top:3px;color:var(--text-secondary);font-size:0.8em;">
+                                🌐 IP: <strong>${network.ip_address || 'Unknown'}</strong>
+                            </div>
+                            <div style="margin-top:3px;color:var(--text-secondary);font-size:0.8em;">
+                                🔗 MAC: <strong>${network.mac_address || 'Unknown'}</strong>
+                            </div>
+                            ${network.gateway ? `<div style="margin-top:3px;color:var(--text-muted);font-size:0.75em;">🔀 Gateway: ${network.gateway}</div>` : ''}
+                            ${network.interface ? `<div style="margin-top:3px;color:var(--text-muted);font-size:0.75em;">🔌 Interface: ${network.interface}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RISK -->
+                <div class="glass-card section-anchor" id="riskSection" style="border-color: ${riskLevel === 'LOW' ? 'rgba(40,167,69,0.3)' : riskLevel === 'MEDIUM' ? 'rgba(255,193,7,0.3)' : 'rgba(220,53,69,0.3)'};">
+                    <div class="card-title">🎯 Risk Assessment <span class="badge">🏹</span></div>
+                    <div class="risk-section">
+                        <div class="risk-circle ${riskClass}">${riskScore}</div>
+                        <div class="risk-details">
+                            <div class="label" style="color:var(--text-secondary);">Risk Level</div>
+                            <div class="value" style="color: ${riskLevel === 'LOW' ? '#28a745' : riskLevel === 'MEDIUM' ? '#ffc107' : '#dc3545'};font-size:1.3em;font-weight:700;">${riskLevel}</div>
+                            <p style="color:var(--text-secondary);margin-top:6px;font-size:0.85em;">
+                                ${riskScore > 50 ? '⚠️ Suspicious processes detected. Please investigate immediately.' : '✅ System appears clean. No immediate action required.'}
+                            </p>
+                            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+                                <span class="tag tag-danger">${suspiciousProcesses} Suspicious</span>
+                                <span class="tag tag-safe">${totalProcesses - suspiciousProcesses} Safe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- APPS -->
+                <div class="glass-card section-anchor" id="appsSection">
+                    <div class="card-title">📦 Installed Applications <span class="badge" id="appCount">${totalApps} 🏹</span></div>
+                    <div class="table-wrap" id="appTableWrap">
+                        <table id="appTable">
+                            <thead>
+                                <tr><th style="width:30px;">#</th><th>Application Name</th><th style="width:90px;">Version</th></tr>
+                            </thead>
+                            <tbody id="appTableBody">
+                                ${appRows}
+                            </tbody>
+                        </table>
+                    </div>
+                    ${totalApps > 15 ? `
+                        <div style="text-align:center;margin-top:10px;">
+                            <button class="btn-show-more" id="appToggleBtn" onclick="toggleApps()">
+                                📂 Show All (${totalApps})
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <!-- PROCESSES -->
+                <div class="glass-card section-anchor" id="processSection">
+                    <div class="card-title">⚙️ Running Processes <span class="badge">${totalProcesses} 🏹</span></div>
+                    
+                    ${suspicious.length > 0 ? `
+                        <h4 style="color:#dc3545;margin-bottom:6px;font-size:0.9em;">⚠️ Suspicious Processes</h4>
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>Process Name</th><th>PID</th><th>Status</th></tr>
+                                ${suspicious.slice(0, 10).map(p => `
+                                    <tr>
+                                        <td style="color:#dc3545;">🔴 ${p.name || 'Unknown'}</td>
+                                        <td>${p.pid || 'N/A'}</td>
+                                        <td><span class="tag tag-danger">Suspicious</span></td>
+                                    </tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                    ` : `<p style="color:#28a745;">✅ No suspicious processes found</p>`}
+                    
+                    ${scripts.length > 0 ? `
+                        <h4 style="margin-top:12px;margin-bottom:6px;color:var(--text-primary);font-size:0.9em;">📜 Scripts Running <span class="badge">${scripts.length}</span></h4>
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>Process Name</th><th>Script Type</th><th>PID</th></tr>
+                                ${scripts.slice(0, 10).map(p => `
+                                    <tr>
+                                        <td>${p.name || 'Unknown'}</td>
+                                        <td><span class="tag tag-info">${p.script_type || 'Unknown'}</span></td>
+                                        <td>${p.pid || 'N/A'}</td>
+                                    </tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <!-- UNINSTALLED -->
+                <div class="glass-card section-anchor" id="uninstallSection">
+                    <div class="card-title">🗑️ Recently Uninstalled <span class="badge">${uninstalledApps.length || 0} 🏹</span></div>
+                    ${uninstalledApps.length > 0 ? `
+                        <div class="table-wrap">
+                            <table>
+                                <tr><th>Application Name</th><th>Uninstalled Date</th></tr>
+                                ${uninstalledApps.map(app => `
+                                    <tr><td>❌ ${app.app_name || 'Unknown'}</td><td>${app.uninstall_date ? new Date(app.uninstall_date).toLocaleString() : 'Unknown'}</td></tr>
+                                `).join('')}
+                            </table>
+                        </div>
+                    ` : `<p style="color:#28a745;">✅ No uninstalls detected in the last 7 days</p>`}
+                </div>
+                
+                <!-- SCAN TIME (NO DOWNLOAD BUTTON FOR USER) -->
+                <div class="scan-time">
+                    📅 Scan completed: ${data.scan_time ? new Date(data.scan_time).toLocaleString() : 'Unknown'} &nbsp;|&nbsp; 🏹 Sharanga
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

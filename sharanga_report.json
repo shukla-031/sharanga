@@ -1,0 +1,2577 @@
+{
+  "scan_time": "2026-08-18T14:01:41.688519",
+  "device": {
+    "device_name": "LP012134",
+    "username": "LP012134\\Akshaydeep Shukla",
+    "domain": "inno.com",
+    "os_name": "Windows",
+    "os_version": "10.0.26200",
+    "os_release": "11",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "ram_gb": 7.79,
+    "ip_address": "172.16.5.2",
+    "is_domain_joined": true
+  },
+  "network": {
+    "ip_address": "172.16.5.2",
+    "interface": "Realtek PCIe GbE Family Controller",
+    "connection_type": "Ethernet"
+  },
+  "installed_apps": [
+    {
+      "name": "Microsoft Office Professional Plus 2019 - en-us",
+      "version": "16.0.10417.20197",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Recuva",
+      "version": "1.55",
+      "publisher": "Piriform",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Seqrite Endpoint Protection Client 10.13",
+      "version": "10.13",
+      "publisher": "Quick Heal Technologies Ltd.",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Tesseract-OCR - open source OCR engine",
+      "version": "5.5.3.20260724",
+      "publisher": "Tesseract-OCR community",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "WinRAR 7.00 (64-bit)",
+      "version": "7.00.0",
+      "publisher": "win.rar GmbH",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 x64 Additional Runtime - 12.0.40664",
+      "version": "12.0.40664",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Oracle VirtualBox 7.2.12",
+      "version": "7.2.12",
+      "publisher": "Oracle and/or its affiliates",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 x64 Minimum Runtime - 12.0.40664",
+      "version": "12.0.40664",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP Unified IO",
+      "version": "2.0.0.434",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X64 Additional Runtime - 14.51.36247",
+      "version": "14.51.36247",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Seqrite Endpoint Protection",
+      "version": "18.00",
+      "publisher": "Seqrite",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Office 16 Click-to-Run Licensing Component",
+      "version": "16.0.10417.20197",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Office 16 Click-to-Run Extensibility Component",
+      "version": "16.0.10417.20197",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Office 16 Click-to-Run Localization Component",
+      "version": "16.0.10417.20197",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.51.36247",
+      "version": "14.51.36247",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Google Chrome",
+      "version": "151.0.7922.138",
+      "publisher": "Google LLC",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "151.0.4129.86",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Edge WebView2 Runtime",
+      "version": "151.0.4129.86",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HPLJDXPHelper",
+      "version": "140.069.007",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ 2013 Redistributable (x64) - 12.0.40664",
+      "version": "12.0.40664.0",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HPDXP",
+      "version": "3.0.26.59",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "hppLaserJetService",
+      "version": "009.033.00930",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "Microsoft Visual C++ v14 Redistributable (x64) - 14.51.36247",
+      "version": "14.51.36247.0",
+      "publisher": "Microsoft Corporation",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "hppM125LaserJetService",
+      "version": "001.032.00682",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "hpStatusAlertsM125-M126",
+      "version": "080.046.00113",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP Product FWUpdater",
+      "version": "4.0.0.8895",
+      "publisher": "Hewlett-Packard Company",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "hpStatusAlerts",
+      "version": "170.040.00260",
+      "publisher": "HP Development Company, L.P.",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP LaserJet Pro MFP M125-M126 HP Device Toolbox",
+      "version": "32.0.28.0",
+      "publisher": "Hewlett-Packard Co.",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP Update",
+      "version": "5.005.002.002",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HPLJUTM125_126",
+      "version": "008.000.0001",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HPLJProMFPM125M126",
+      "version": "1.00.0000",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HPLJUTCore",
+      "version": "014.000.0001",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP LaserJet Pro MFP M125-M126",
+      "version": "15.0.15310.1316",
+      "publisher": "Hewlett-Packard",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "LJDXPHelperUI",
+      "version": "140.069.007",
+      "publisher": "HP",
+      "install_date": "Unknown"
+    },
+    {
+      "name": "HP LJ M125126 Scan HP Scan",
+      "version": "1.0.302.0",
+      "publisher": "Hewlett-Packard Co.",
+      "install_date": "Unknown"
+    },
+    {
+      "name": null,
+      "version": null,
+      "publisher": null,
+      "install_date": null
+    }
+  ],
+  "uninstalled_apps": [],
+  "running_processes": [
+    {
+      "pid": 0,
+      "name": "System Idle Process",
+      "exe_path": null,
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": null
+    },
+    {
+      "pid": 4,
+      "name": "System",
+      "exe_path": "",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": null
+    },
+    {
+      "pid": 140,
+      "name": "",
+      "exe_path": "",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:21.537701"
+    },
+    {
+      "pid": 184,
+      "name": "Registry",
+      "exe_path": "Registry",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:21.545695"
+    },
+    {
+      "pid": 628,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:48.649734"
+    },
+    {
+      "pid": 692,
+      "name": "smss.exe",
+      "exe_path": "C:\\Windows\\System32\\smss.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:23.988562"
+    },
+    {
+      "pid": 828,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.941032"
+    },
+    {
+      "pid": 1012,
+      "name": "HPLaserJetService.exe",
+      "exe_path": "C:\\Program Files (x86)\\HP\\HPLaserJetService\\HPLaserJetService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.121352"
+    },
+    {
+      "pid": 1020,
+      "name": "csrss.exe",
+      "exe_path": "C:\\Windows\\System32\\csrss.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:31.817797"
+    },
+    {
+      "pid": 1028,
+      "name": "wininit.exe",
+      "exe_path": "C:\\Windows\\System32\\wininit.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.053382"
+    },
+    {
+      "pid": 1048,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s CDPUserSvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.968504"
+    },
+    {
+      "pid": 1148,
+      "name": "services.exe",
+      "exe_path": "C:\\Windows\\System32\\services.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.177440"
+    },
+    {
+      "pid": 1192,
+      "name": "LsaIso.exe",
+      "exe_path": "C:\\Windows\\System32\\LsaIso.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.197810"
+    },
+    {
+      "pid": 1200,
+      "name": "lsass.exe",
+      "exe_path": "C:\\Windows\\System32\\lsass.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.201005"
+    },
+    {
+      "pid": 1216,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:42.417584"
+    },
+    {
+      "pid": 1228,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:59:21.936834"
+    },
+    {
+      "pid": 1344,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.580931"
+    },
+    {
+      "pid": 1376,
+      "name": "WUDFHost.exe",
+      "exe_path": "C:\\Windows\\System32\\WUDFHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.595463"
+    },
+    {
+      "pid": 1408,
+      "name": "fontdrvhost.exe",
+      "exe_path": "C:\\Windows\\System32\\fontdrvhost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.602045"
+    },
+    {
+      "pid": 1472,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:25:15.955530"
+    },
+    {
+      "pid": 1516,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.640305"
+    },
+    {
+      "pid": 1560,
+      "name": "SearchHost.exe",
+      "exe_path": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe",
+      "command_line": "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe -ServerName:CortanaUI.AppXstmwaab17q5s3y22tp6apqz7a45vwv65.mca",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:55.108944"
+    },
+    {
+      "pid": 1564,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.665105"
+    },
+    {
+      "pid": 1636,
+      "name": "WUDFHost.exe",
+      "exe_path": "C:\\Windows\\System32\\WUDFHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.701836"
+    },
+    {
+      "pid": 1752,
+      "name": "dllhost.exe",
+      "exe_path": "C:\\Windows\\System32\\dllhost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\DllHost.exe /Processid:{3EB3C877-1F16-487C-9050-104DBCD66683}",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.126232"
+    },
+    {
+      "pid": 1792,
+      "name": "WUDFHost.exe",
+      "exe_path": "C:\\Windows\\System32\\WUDFHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.772630"
+    },
+    {
+      "pid": 1864,
+      "name": "AutoModeDetect.exe",
+      "exe_path": "C:\\Windows\\System32\\AutoModeDetect.exe",
+      "command_line": "C:\\WINDOWS\\system32\\AutoModeDetect.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.765119"
+    },
+    {
+      "pid": 1896,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.923834"
+    },
+    {
+      "pid": 1912,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.924576"
+    },
+    {
+      "pid": 1928,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.925065"
+    },
+    {
+      "pid": 2028,
+      "name": "AggregatorHost.exe",
+      "exe_path": "C:\\Windows\\System32\\AggregatorHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:38.253269"
+    },
+    {
+      "pid": 2032,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --no-pre-read-main-dll --metrics-shmem-handle=2360,i,15241375442519357770,4394620305392560911,524288 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2352 /prefetch:13",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:49.035126"
+    },
+    {
+      "pid": 2040,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:32.941015"
+    },
+    {
+      "pid": 2096,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.017323"
+    },
+    {
+      "pid": 2116,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.018660"
+    },
+    {
+      "pid": 2124,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.020365"
+    },
+    {
+      "pid": 2136,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.022658"
+    },
+    {
+      "pid": 2148,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.023388"
+    },
+    {
+      "pid": 2180,
+      "name": "ApplicationFrameHost.exe",
+      "exe_path": "C:\\Windows\\System32\\ApplicationFrameHost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\ApplicationFrameHost.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 10:54:09.509171"
+    },
+    {
+      "pid": 2252,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.038798"
+    },
+    {
+      "pid": 2300,
+      "name": "FnHotkeyUtility.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lenovofnandfunctionkeys.inf_amd64_5e21bf389d23855a\\FnHotkeyUtility.exe",
+      "command_line": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lenovofnandfunctionkeys.inf_amd64_5e21bf389d23855a\\FnHotkeyUtility.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.064418"
+    },
+    {
+      "pid": 2312,
+      "name": "drvinst.exe",
+      "exe_path": "C:\\Windows\\System32\\drvinst.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 15:34:11.192468"
+    },
+    {
+      "pid": 2336,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.058222"
+    },
+    {
+      "pid": 2344,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.059234"
+    },
+    {
+      "pid": 2364,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.062301"
+    },
+    {
+      "pid": 2388,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:13:38.794981"
+    },
+    {
+      "pid": 2516,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=renderer --pdf-upsell-enabled --video-capture-use-gpu-memory-buffer --lang=en-US --js-flags=--ms-user-locale=en_IN --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=11 --time-ticks-at-unix-epoch=-1786685596671549 --launch-time-ticks=354992764991 --skip-read-main-dll --metrics-shmem-handle=6556,i,7348184692739433420,2467594583136411367,2097152 --field-trial-handle=2344,i,2267850624157988998,13872377843064482416,262144 --variations-seed-version --pseudonymization-salt-handle=2340,i,8423196806177942944,3576697698791923032,4 --trace-process-track-uuid=3190708996619331833 --mojo-platform-channel-handle=6512 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:49.438917"
+    },
+    {
+      "pid": 2528,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.098407"
+    },
+    {
+      "pid": 2568,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.114535"
+    },
+    {
+      "pid": 2608,
+      "name": "IntelCpHDCPSvc.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\iigd_dch.inf_amd64_c529b210005a7e19\\IntelCpHDCPSvc.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.125119"
+    },
+    {
+      "pid": 2616,
+      "name": "python.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.PythonManager_26.3.240.0_x64__3847v3x7pw1km\\python.exe",
+      "command_line": "python sharanga_scanner.py",
+      "is_script": true,
+      "script_type": "Python",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:01:31.224595"
+    },
+    {
+      "pid": 2632,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.137281"
+    },
+    {
+      "pid": 2644,
+      "name": "sihost.exe",
+      "exe_path": "C:\\Windows\\System32\\sihost.exe",
+      "command_line": "sihost.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.938040"
+    },
+    {
+      "pid": 2668,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.146726"
+    },
+    {
+      "pid": 2688,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.150257"
+    },
+    {
+      "pid": 2704,
+      "name": "CrossDeviceService.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26062.105.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\MicrosoftWindows.CrossDevice_1.26062.105.0_x64__cw5n1h2txyewy\\CrossDeviceService.exe -RegisterProcessAsComServer -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:53.436592"
+    },
+    {
+      "pid": 2732,
+      "name": "hpwuschd2.exe",
+      "exe_path": "C:\\Program Files (x86)\\HP\\HP Software Update\\hpwuschd2.exe",
+      "command_line": "C:\\Program Files (x86)\\HP\\HP Software Update\\hpwuschd2.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:12.246102"
+    },
+    {
+      "pid": 2792,
+      "name": "WidgetService.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\Microsoft.WidgetsPlatformRuntime_1.6.19.0_x64__8wekyb3d8bbwe\\WidgetService\\WidgetService.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\Microsoft.WidgetsPlatformRuntime_1.6.19.0_x64__8wekyb3d8bbwe\\WidgetService\\WidgetService.exe -RegisterProcessAsComServer -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 11:23:07.712300"
+    },
+    {
+      "pid": 2800,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.169450"
+    },
+    {
+      "pid": 2808,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.169486"
+    },
+    {
+      "pid": 2872,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.182531"
+    },
+    {
+      "pid": 2932,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.197042"
+    },
+    {
+      "pid": 3252,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s WpnUserService",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.063697"
+    },
+    {
+      "pid": 3444,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=crashpad-handler --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Microsoft\\Edge\\User Data /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Microsoft\\Edge\\User Data\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=151.0.7922.138 --annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=151.0.4129.86 --initial-client-data=0x1cc,0x264,0x268,0x1c8,0x270,0x7ff87d7d65f0,0x7ff87d7d6600,0x7ff87d7d6610",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:47.745677"
+    },
+    {
+      "pid": 3532,
+      "name": "MemCompression",
+      "exe_path": "MemCompression",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.726423"
+    },
+    {
+      "pid": 3540,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.446575"
+    },
+    {
+      "pid": 3556,
+      "name": "OneApp.IGCC.WinService.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\igcc_dch.inf_amd64_db7985d30b50e28f\\OneApp.IGCC.WinService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.120705"
+    },
+    {
+      "pid": 3584,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.725892"
+    },
+    {
+      "pid": 3596,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:59:28.917244"
+    },
+    {
+      "pid": 3620,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.507205"
+    },
+    {
+      "pid": 3636,
+      "name": "ARWSRVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\ARWSRVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.513858"
+    },
+    {
+      "pid": 3652,
+      "name": "SCSECSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\SCSECSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.515766"
+    },
+    {
+      "pid": 3748,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.545931"
+    },
+    {
+      "pid": 3820,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.589459"
+    },
+    {
+      "pid": 3880,
+      "name": "BSSISS.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\BSSISS.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.615267"
+    },
+    {
+      "pid": 3912,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.123551"
+    },
+    {
+      "pid": 3964,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.655971"
+    },
+    {
+      "pid": 3992,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.662456"
+    },
+    {
+      "pid": 3996,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.662457"
+    },
+    {
+      "pid": 4136,
+      "name": "igfxCUIServiceN.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_ad4654f43fda305f\\igfxCUIServiceN.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.766819"
+    },
+    {
+      "pid": 4164,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.337860"
+    },
+    {
+      "pid": 4204,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.812516"
+    },
+    {
+      "pid": 4212,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.816222"
+    },
+    {
+      "pid": 4244,
+      "name": "taskhostw.exe",
+      "exe_path": "C:\\Windows\\System32\\taskhostw.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:09:53.724556"
+    },
+    {
+      "pid": 4288,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.358470"
+    },
+    {
+      "pid": 4320,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.867656"
+    },
+    {
+      "pid": 4424,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.911695"
+    },
+    {
+      "pid": 4472,
+      "name": "unsecapp.exe",
+      "exe_path": "C:\\Windows\\System32\\wbem\\unsecapp.exe",
+      "command_line": "C:\\WINDOWS\\system32\\wbem\\unsecapp.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:25:23.149414"
+    },
+    {
+      "pid": 4492,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:33.948365"
+    },
+    {
+      "pid": 4516,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=18 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=351405180312 --metrics-shmem-handle=6832,i,12522524407368911869,5405264966285377256,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709003178624776 --mojo-platform-channel-handle=6748 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:40:01.890424"
+    },
+    {
+      "pid": 4728,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.032111"
+    },
+    {
+      "pid": 4828,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.107140"
+    },
+    {
+      "pid": 4892,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.151702"
+    },
+    {
+      "pid": 4972,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.197486"
+    },
+    {
+      "pid": 5024,
+      "name": "spoolsv.exe",
+      "exe_path": "C:\\Windows\\System32\\spoolsv.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:34.246472"
+    },
+    {
+      "pid": 5056,
+      "name": "WmiPrvSE.exe",
+      "exe_path": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:01:31.591144"
+    },
+    {
+      "pid": 5132,
+      "name": "RuntimeBroker.exe",
+      "exe_path": "C:\\Windows\\System32\\RuntimeBroker.exe",
+      "command_line": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 11:05:30.222027"
+    },
+    {
+      "pid": 5136,
+      "name": "REPRSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\REPRSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.192445"
+    },
+    {
+      "pid": 5152,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.123373"
+    },
+    {
+      "pid": 5160,
+      "name": "QHPISVR.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\QHPISVR.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:58:07.068271"
+    },
+    {
+      "pid": 5176,
+      "name": "unsecapp.exe",
+      "exe_path": "C:\\Windows\\System32\\wbem\\unsecapp.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:38.048856"
+    },
+    {
+      "pid": 5280,
+      "name": "SessionService.exe",
+      "exe_path": "C:\\Windows\\System32\\drivers\\SessionService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.196720"
+    },
+    {
+      "pid": 5344,
+      "name": "IntelAudioService.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\intcoed.inf_amd64_dd6a7ef14d856351\\AS\\IAS\\IntelAudioService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.135664"
+    },
+    {
+      "pid": 5412,
+      "name": "MpDefenderCoreService.exe",
+      "exe_path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26070.9-0\\MpDefenderCoreService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.166542"
+    },
+    {
+      "pid": 5444,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:35.662234"
+    },
+    {
+      "pid": 5528,
+      "name": "Widgets.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.17301.80.0_x64__cw5n1h2txyewy\\Dashboard\\Widgets.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\MicrosoftWindows.Client.WebExperience_526.17301.80.0_x64__cw5n1h2txyewy\\Dashboard\\Widgets.exe -ServerName:Microsoft.Windows.DashboardServer",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:55.442440"
+    },
+    {
+      "pid": 5540,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s NPSMSvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 11:54:27.716488"
+    },
+    {
+      "pid": 5584,
+      "name": "jhi_service.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\dal.inf_amd64_af50fdb80983f7bc\\jhi_service.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.146113"
+    },
+    {
+      "pid": 5668,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --top-chrome-webui --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=8 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=351397045756 --metrics-shmem-handle=5052,i,10789065658243461405,16636071038822829245,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190708993808206286 --mojo-platform-channel-handle=5124 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:53.755781"
+    },
+    {
+      "pid": 5708,
+      "name": "AppVShNotify.exe",
+      "exe_path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\AppVShNotify.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 13:49:06.127657"
+    },
+    {
+      "pid": 5744,
+      "name": "LNBITSSvc.exe",
+      "exe_path": "C:\\Windows\\System32\\LNBITSSvc.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.157986"
+    },
+    {
+      "pid": 5756,
+      "name": "wlanext.exe",
+      "exe_path": "C:\\Windows\\System32\\wlanext.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:35.809433"
+    },
+    {
+      "pid": 5808,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:59:22.968829"
+    },
+    {
+      "pid": 5852,
+      "name": "LenovoUtilityService.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lenovofnandfunctionkeys.inf_amd64_5e21bf389d23855a\\LenovoUtilityService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.159379"
+    },
+    {
+      "pid": 5880,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=renderer --noerrdialogs --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView --webview-exe-name=M365Copilot.exe --webview-exe-version=19.2608.41021.0 --embedded-browser-webview=1 --embedded-browser-webview-dpi-awareness=2 --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=8 --js-flags=--expose-gc --ms-user-locale=en_IN --time-ticks-at-unix-epoch=-1786685599409346 --launch-time-ticks=258967062945 --skip-read-main-dll --metrics-shmem-handle=5232,i,17784482542229370971,7188738194529228576,2097152 --field-trial-handle=1992,i,5024160690377908128,8301797323997882946,262144 --enable-features=msSingleSignOnOSForPrimaryAccountIsShared --disable-features=msEnhancedTrackingPreventionEnabled --variations-seed-version --pseudonymization-salt-handle=2004,i,8832779512551639939,4768304417760688224,4 --trace-process-track-uuid=3190708993808206286 --mojo-platform-channel-handle=5208 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:26.479128"
+    },
+    {
+      "pid": 5924,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=utility --utility-sub-type=video_capture.mojom.VideoCaptureService --lang=en-US --service-sandbox-type=none --video-capture-use-gpu-memory-buffer --no-pre-read-main-dll --metrics-shmem-handle=6976,i,478422630061231750,17973125404069973118,524288 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709005989750323 --mojo-platform-channel-handle=5628 /prefetch:14",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:40:04.228132"
+    },
+    {
+      "pid": 5984,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --startup-read-main-dll --metrics-shmem-handle=2564,i,10081985854587711352,8485939168445381710,524288 --field-trial-handle=2344,i,2267850624157988998,13872377843064482416,262144 --variations-seed-version --pseudonymization-salt-handle=2340,i,8423196806177942944,3576697698791923032,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2668 /prefetch:11",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:47.999494"
+    },
+    {
+      "pid": 6012,
+      "name": "OPSSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\OPSSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.082162"
+    },
+    {
+      "pid": 6080,
+      "name": "accasrvc.exe",
+      "exe_path": "C:\\Program Files\\Seqrite\\Client Agent 10.13\\accasrvc.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.103788"
+    },
+    {
+      "pid": 6088,
+      "name": "emlproxy.exe",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\emlproxy.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.103879"
+    },
+    {
+      "pid": 6096,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.103911"
+    },
+    {
+      "pid": 6108,
+      "name": "BDSSVC.exe",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\BDSSVC.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.106455"
+    },
+    {
+      "pid": 6120,
+      "name": "DAX3API.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\dax3_swc_aposvc.inf_amd64_41de6367ef0679f0\\DAX3API.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.108417"
+    },
+    {
+      "pid": 6140,
+      "name": "FMService64.exe",
+      "exe_path": "C:\\Windows\\System32\\FMService64.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.115368"
+    },
+    {
+      "pid": 6244,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.227724"
+    },
+    {
+      "pid": 6284,
+      "name": "QUHLPSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\QUHLPSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.235366"
+    },
+    {
+      "pid": 6316,
+      "name": "MsMpEng.exe",
+      "exe_path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26070.9-0\\MsMpEng.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.238802"
+    },
+    {
+      "pid": 6356,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.247320"
+    },
+    {
+      "pid": 6364,
+      "name": "LMS.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lms.inf_amd64_a55aa2cd52a3429d\\LMS.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.247505"
+    },
+    {
+      "pid": 6380,
+      "name": "WACSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\WACSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.251213"
+    },
+    {
+      "pid": 6396,
+      "name": "RtkAudUService64.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_030a6fd3020fb520\\RtkAudUService64.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.256603"
+    },
+    {
+      "pid": 6404,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.261568"
+    },
+    {
+      "pid": 6412,
+      "name": "TbtP2pShortcutService.exe",
+      "exe_path": "C:\\Windows\\TbtP2pShortcutService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.262666"
+    },
+    {
+      "pid": 6420,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.262938"
+    },
+    {
+      "pid": 6432,
+      "name": "WMIRegistrationService.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\mewmiprov.inf_amd64_d51901c26227fb29\\WMIRegistrationService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.266384"
+    },
+    {
+      "pid": 6692,
+      "name": "dwm.exe",
+      "exe_path": "C:\\Windows\\System32\\dwm.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 19:31:31.738909"
+    },
+    {
+      "pid": 6696,
+      "name": "cmd.exe",
+      "exe_path": "C:\\Windows\\System32\\cmd.exe",
+      "command_line": "C:\\WINDOWS\\system32\\cmd.exe",
+      "is_script": true,
+      "script_type": "Batch",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:54:07.610291"
+    },
+    {
+      "pid": 6740,
+      "name": "esif_uf.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\dptf_cpu.inf_amd64_897ea327b3fe52f7\\esif_uf.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.364862"
+    },
+    {
+      "pid": 6892,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:38.967111"
+    },
+    {
+      "pid": 6920,
+      "name": "SPSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\SPSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:38.575107"
+    },
+    {
+      "pid": 6992,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:38.170567"
+    },
+    {
+      "pid": 7676,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:39.125744"
+    },
+    {
+      "pid": 7988,
+      "name": "unsecapp.exe",
+      "exe_path": "C:\\Windows\\System32\\wbem\\unsecapp.exe",
+      "command_line": "C:\\WINDOWS\\system32\\wbem\\unsecapp.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.380468"
+    },
+    {
+      "pid": 8048,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=30 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=352777535900 --metrics-shmem-handle=7488,i,1667692019783545625,5362771195576826289,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709014423126964 --mojo-platform-channel-handle=7632 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:02:54.238317"
+    },
+    {
+      "pid": 8088,
+      "name": "WmiPrvSE.exe",
+      "exe_path": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:37.978423"
+    },
+    {
+      "pid": 8140,
+      "name": "SearchFilterHost.exe",
+      "exe_path": "C:\\Windows\\System32\\SearchFilterHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:00:51.120477"
+    },
+    {
+      "pid": 8264,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:39.426155"
+    },
+    {
+      "pid": 8320,
+      "name": "SearchIndexer.exe",
+      "exe_path": "C:\\Windows\\System32\\SearchIndexer.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 13:49:39.602485"
+    },
+    {
+      "pid": 8336,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 10:42:11.102583"
+    },
+    {
+      "pid": 8600,
+      "name": "dllhost.exe",
+      "exe_path": "C:\\Windows\\System32\\dllhost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\DllHost.exe /Processid:{3AD05575-8857-4850-9277-11B85BDB8E09}",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:58:07.207469"
+    },
+    {
+      "pid": 8692,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k UdkSvcGroup -s UdkUserSvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:55.509246"
+    },
+    {
+      "pid": 8924,
+      "name": "printfilterpipelinesvc.exe",
+      "exe_path": "C:\\Windows\\System32\\printfilterpipelinesvc.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:39.061634"
+    },
+    {
+      "pid": 9000,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-pre-read-main-dll --metrics-shmem-handle=2180,i,6170071834851482134,1465105040814757187,524288 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2184 /prefetch:11",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:49.013512"
+    },
+    {
+      "pid": 9228,
+      "name": "ShellExperienceHost.exe",
+      "exe_path": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe",
+      "command_line": "C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe -ServerName:App.AppXtk181tbxbce2qsex02s8tw7hfxa9xb3t.mca",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 11:05:29.850740"
+    },
+    {
+      "pid": 9376,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --startup-read-main-dll --metrics-shmem-handle=2956,i,13966133444794278715,16250581093455436072,524288 --field-trial-handle=2344,i,2267850624157988998,13872377843064482416,262144 --variations-seed-version --pseudonymization-salt-handle=2340,i,8423196806177942944,3576697698791923032,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2976 /prefetch:13",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:48.069483"
+    },
+    {
+      "pid": 9496,
+      "name": "ONLINENT.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\ONLINENT.EXE",
+      "command_line": "C:\\Program Files\\Seqrite\\Seqrite\\onlinent.exe /CHECK",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.802547"
+    },
+    {
+      "pid": 9552,
+      "name": "SecurityHealthSystray.exe",
+      "exe_path": "C:\\Windows\\System32\\SecurityHealthSystray.exe",
+      "command_line": "C:\\Windows\\System32\\SecurityHealthSystray.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:59.637006"
+    },
+    {
+      "pid": 9596,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:07:52.840998"
+    },
+    {
+      "pid": 9804,
+      "name": "igfxEMN.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_ad4654f43fda305f\\igfxEMN.exe",
+      "command_line": "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\cui_dch.inf_amd64_ad4654f43fda305f\\igfxEMN.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.999974"
+    },
+    {
+      "pid": 9868,
+      "name": "msiexec.exe",
+      "exe_path": "C:\\Windows\\System32\\msiexec.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:01:32.224717"
+    },
+    {
+      "pid": 9888,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=audio --video-capture-use-gpu-memory-buffer --no-pre-read-main-dll --metrics-shmem-handle=3716,i,5771565115234415799,7190656228043144442,524288 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709005052708474 --mojo-platform-channel-handle=6868 /prefetch:12",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:40:04.228139"
+    },
+    {
+      "pid": 10116,
+      "name": "HPStatusAlerts.exe",
+      "exe_path": "C:\\Program Files (x86)\\HP\\StatusAlerts\\bin\\HPStatusAlerts.exe",
+      "command_line": "C:\\Program Files (x86)\\HP\\StatusAlerts\\bin\\HPStatusAlerts.exe /enum:on /alerts:on /notifications:on /fl:on /fr:on /appData:on /tmcp:on",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:13.075739"
+    },
+    {
+      "pid": 10208,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:42.046063"
+    },
+    {
+      "pid": 10236,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:42.086084"
+    },
+    {
+      "pid": 10268,
+      "name": "SCANWSCS.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\SCANWSCS.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:39.760259"
+    },
+    {
+      "pid": 10372,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=crashpad-handler --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Google\\Chrome\\User Data /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Google\\Chrome\\User Data\\Crashpad --metrics-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Google\\Chrome\\User Data --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=plat=Win64 --annotation=prod=Chrome --annotation=ver=151.0.7922.138 --initial-client-data=0x11c,0x120,0x124,0xf8,0x128,0x7ff8a917d9c0,0x7ff8a917d9d0,0x7ff8a917d9e0",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:48.681828"
+    },
+    {
+      "pid": 10400,
+      "name": "explorer.exe",
+      "exe_path": "C:\\Windows\\explorer.exe",
+      "command_line": "C:\\WINDOWS\\Explorer.EXE",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.598970"
+    },
+    {
+      "pid": 10452,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 11:08:57.091433"
+    },
+    {
+      "pid": 10460,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:39.884217"
+    },
+    {
+      "pid": 10576,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k ClipboardSvcGroup -p -s cbdhsvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:54.518629"
+    },
+    {
+      "pid": 10588,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:42.947795"
+    },
+    {
+      "pid": 10796,
+      "name": "CrossDeviceResume.exe",
+      "exe_path": "C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe",
+      "command_line": "C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe /tileid MicrosoftWindows.Client.CBS_cw5n1h2txyewy!CrossDeviceResumeApp",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.828003"
+    },
+    {
+      "pid": 10904,
+      "name": "DAX3API.exe",
+      "exe_path": "C:\\Windows\\System32\\DRIVER~1\\FILERE~1\\DAX3_S~2.INF\\DAX3API.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.764807"
+    },
+    {
+      "pid": 10952,
+      "name": "csrss.exe",
+      "exe_path": "C:\\Windows\\System32\\csrss.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 19:31:31.346093"
+    },
+    {
+      "pid": 11024,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:43.238674"
+    },
+    {
+      "pid": 11040,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --flag-switches-begin --flag-switches-end --no-startup-window",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:47.563252"
+    },
+    {
+      "pid": 11096,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:43.779515"
+    },
+    {
+      "pid": 11436,
+      "name": "RuntimeBroker.exe",
+      "exe_path": "C:\\Windows\\System32\\RuntimeBroker.exe",
+      "command_line": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.391401"
+    },
+    {
+      "pid": 11588,
+      "name": "python.exe",
+      "exe_path": "C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "command_line": "C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe sharanga_scanner.py",
+      "is_script": true,
+      "script_type": "Python",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:01:31.378316"
+    },
+    {
+      "pid": 11608,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:59:28.762766"
+    },
+    {
+      "pid": 11780,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=renderer --instant-process --pdf-upsell-enabled --video-capture-use-gpu-memory-buffer --lang=en-US --js-flags=--ms-user-locale=en_IN --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1786685596671549 --launch-time-ticks=354992490266 --skip-read-main-dll --metrics-shmem-handle=6168,i,11639992235815505969,9759154359030977015,2097152 --field-trial-handle=2344,i,2267850624157988998,13872377843064482416,262144 --variations-seed-version --pseudonymization-salt-handle=2340,i,8423196806177942944,3576697698791923032,4 --trace-process-track-uuid=3190708994745248135 --mojo-platform-channel-handle=6172 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:49.163422"
+    },
+    {
+      "pid": 11820,
+      "name": "taskhostw.exe",
+      "exe_path": "C:\\Windows\\System32\\taskhostw.exe",
+      "command_line": "taskhostw.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 11:47:09.221360"
+    },
+    {
+      "pid": 11836,
+      "name": "RuntimeBroker.exe",
+      "exe_path": "C:\\Windows\\System32\\RuntimeBroker.exe",
+      "command_line": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:55.472348"
+    },
+    {
+      "pid": 11852,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:04:20.923795"
+    },
+    {
+      "pid": 12028,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 15:34:11.152722"
+    },
+    {
+      "pid": 12132,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=crashpad-handler --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView /prefetch:4 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=151.0.7922.109 --annotation=exe=C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --annotation=plat=Win64 --annotation=prod=Edge WebView2 --annotation=ver=151.0.4129.78 --initial-client-data=0x170,0x174,0x178,0x14c,0x180,0x7ff8a9dd65f0,0x7ff8a9dd6600,0x7ff8a9dd6610",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.685143"
+    },
+    {
+      "pid": 12224,
+      "name": "ShellHost.exe",
+      "exe_path": "C:\\Windows\\System32\\ShellHost.exe",
+      "command_line": "C:\\Windows\\System32\\ShellHost.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:27:34.274808"
+    },
+    {
+      "pid": 12228,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=gpu-process --noerrdialogs --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.9168) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 151.0.4129.78) --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView --webview-exe-name=SearchHost.exe --webview-exe-version=2606.30004.100.0 --embedded-browser-webview=1 --gpu-preferences=WAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAAEAAAAAIAAAABAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --always-read-main-dll --metrics-shmem-handle=1836,i,16823586097671838738,10769546851228982881,262144 --field-trial-handle=1924,i,16405568238449397503,15244633192406233895,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=2012,i,177583681315383277,9395825500584134088,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2000 /prefetch:2 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:57.088771"
+    },
+    {
+      "pid": 12416,
+      "name": "SearchProtocolHost.exe",
+      "exe_path": "C:\\Windows\\System32\\SearchProtocolHost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 14:00:09.183501"
+    },
+    {
+      "pid": 12452,
+      "name": "msedge.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe --type=gpu-process --gpu-preferences=WAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAAEAAAAAIAAAABAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --startup-read-main-dll --metrics-shmem-handle=2260,i,7973748672188354946,7977958763166100250,262144 --field-trial-handle=2344,i,2267850624157988998,13872377843064482416,262144 --variations-seed-version --pseudonymization-salt-handle=2340,i,8423196806177942944,3576697698791923032,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2324 /prefetch:2",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:39:47.999528"
+    },
+    {
+      "pid": 12628,
+      "name": "StartMenuExperienceHost.exe",
+      "exe_path": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe",
+      "command_line": "C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe -ServerName:FullTrustApp.AppXykjsye98af63ez2annt9djke8trg8stn.mca",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:55.125177"
+    },
+    {
+      "pid": 12636,
+      "name": "drvinst.exe",
+      "exe_path": "C:\\Windows\\System32\\drvinst.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:55:12.015171"
+    },
+    {
+      "pid": 12652,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=351403938944 --metrics-shmem-handle=6696,i,6259874748465135282,2951472760553458790,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709001304541078 --mojo-platform-channel-handle=6836 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:40:00.648553"
+    },
+    {
+      "pid": 13004,
+      "name": "FnHotkeyCapsLKNumLK.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lenovofnandfunctionkeys.inf_amd64_5e21bf389d23855a\\FnHotkeyCapsLKNumLK.exe",
+      "command_line": "C:\\Windows\\System32\\DriverStore\\FileRepository\\lenovofnandfunctionkeys.inf_amd64_5e21bf389d23855a\\FnHotkeyCapsLKNumLK.exe",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.945671"
+    },
+    {
+      "pid": 13320,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=renderer --noerrdialogs --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.9168) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 151.0.4129.78) --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView --webview-exe-name=SearchHost.exe --webview-exe-version=2606.30004.100.0 --embedded-browser-webview=1 --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --js-flags=--expose-gc --ms-user-locale=en_IN --time-ticks-at-unix-epoch=-1786685599409346 --launch-time-ticks=258937924726 --always-read-main-dll --metrics-shmem-handle=3976,i,17840339654949722543,8242180417882615053,2097152 --field-trial-handle=1924,i,16405568238449397503,15244633192406233895,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=2012,i,177583681315383277,9395825500584134088,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3984 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:57.372755"
+    },
+    {
+      "pid": 13440,
+      "name": "WindowsTerminal.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:54:07.878075"
+    },
+    {
+      "pid": 13620,
+      "name": "winlogon.exe",
+      "exe_path": "C:\\Windows\\System32\\winlogon.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 19:31:31.375584"
+    },
+    {
+      "pid": 13744,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --noerrdialogs --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView --webview-exe-name=M365Copilot.exe --webview-exe-version=19.2608.41021.0 --embedded-browser-webview=1 --embedded-browser-webview-dpi-awareness=2 --startup-read-main-dll --metrics-shmem-handle=2520,i,10514968817359348283,5331467456340536726,524288 --field-trial-handle=1992,i,5024160690377908128,8301797323997882946,262144 --enable-features=msSingleSignOnOSForPrimaryAccountIsShared --disable-features=msEnhancedTrackingPreventionEnabled --variations-seed-version --pseudonymization-salt-handle=2004,i,8832779512551639939,4768304417760688224,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2600 /prefetch:13 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.889166"
+    },
+    {
+      "pid": 13792,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --noerrdialogs --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView --webview-exe-name=M365Copilot.exe --webview-exe-version=19.2608.41021.0 --embedded-browser-webview=1 --embedded-browser-webview-dpi-awareness=2 --startup-read-main-dll --metrics-shmem-handle=2224,i,4855882588998932644,5754680796021015750,524288 --field-trial-handle=1992,i,5024160690377908128,8301797323997882946,262144 --enable-features=msSingleSignOnOSForPrimaryAccountIsShared --disable-features=msEnhancedTrackingPreventionEnabled --variations-seed-version --pseudonymization-salt-handle=2004,i,8832779512551639939,4768304417760688224,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2304 /prefetch:11 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.836674"
+    },
+    {
+      "pid": 13820,
+      "name": "RuntimeBroker.exe",
+      "exe_path": "C:\\Windows\\System32\\RuntimeBroker.exe",
+      "command_line": "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:54.967587"
+    },
+    {
+      "pid": 13972,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --noerrdialogs --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.9168) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 151.0.4129.78) --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView --webview-exe-name=SearchHost.exe --webview-exe-version=2606.30004.100.0 --embedded-browser-webview=1 --always-read-main-dll --metrics-shmem-handle=2212,i,1028482209865953702,4216916377220521646,524288 --field-trial-handle=1924,i,16405568238449397503,15244633192406233895,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=2012,i,177583681315383277,9395825500584134088,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2460 /prefetch:11 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:57.087872"
+    },
+    {
+      "pid": 14220,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --noerrdialogs --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.9168) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 151.0.4129.78) --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView --webview-exe-name=SearchHost.exe --webview-exe-version=2606.30004.100.0 --embedded-browser-webview=1 --always-read-main-dll --metrics-shmem-handle=2500,i,4575608618894550207,16170893162337632789,524288 --field-trial-handle=1924,i,16405568238449397503,15244633192406233895,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=2012,i,177583681315383277,9395825500584134088,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2792 /prefetch:13 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:57.134357"
+    },
+    {
+      "pid": 14256,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=gpu-process --noerrdialogs --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView --webview-exe-name=M365Copilot.exe --webview-exe-version=19.2608.41021.0 --embedded-browser-webview=1 --embedded-browser-webview-dpi-awareness=2 --gpu-preferences=WAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAAEAAAAAIAAAABAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --startup-read-main-dll --metrics-shmem-handle=1828,i,9753408747786144250,17250650093058569314,262144 --field-trial-handle=1992,i,5024160690377908128,8301797323997882946,262144 --enable-features=msSingleSignOnOSForPrimaryAccountIsShared --disable-features=msEnhancedTrackingPreventionEnabled --variations-seed-version --pseudonymization-salt-handle=2004,i,8832779512551639939,4768304417760688224,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=1968 /prefetch:2 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.830579"
+    },
+    {
+      "pid": 14284,
+      "name": "OneDrive.exe",
+      "exe_path": "C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe",
+      "command_line": " /updateInstalled /background",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:50:57.620836"
+    },
+    {
+      "pid": 14364,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --type=crashpad-handler --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView /prefetch:4 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=151.0.7922.109 --annotation=exe=C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --annotation=plat=Win64 --annotation=prod=Edge WebView2 --annotation=ver=151.0.4129.78 --initial-client-data=0x16c,0x170,0x174,0x148,0x17c,0x7ff8a9dd65f0,0x7ff8a9dd6600,0x7ff8a9dd6610",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:56.429370"
+    },
+    {
+      "pid": 14376,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:39.585321"
+    },
+    {
+      "pid": 14464,
+      "name": "OpenConsole.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe\\OpenConsole.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe\\OpenConsole.exe -Embedding",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:54:07.700561"
+    },
+    {
+      "pid": 14484,
+      "name": "SAPISSVC.EXE",
+      "exe_path": "C:\\Program Files\\Seqrite\\Seqrite\\SAPISSVC.EXE",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:52:54.658434"
+    },
+    {
+      "pid": 14684,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s webthreatdefusersvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.010923"
+    },
+    {
+      "pid": 14696,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=gpu-process --no-pre-read-main-dll --gpu-preferences=WAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAAEAAAAAIAAAABAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --metrics-shmem-handle=1808,i,15784097843788963337,797558285039389486,262144 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=1900 /prefetch:2",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:49.005008"
+    },
+    {
+      "pid": 15076,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 13:31:37.107280"
+    },
+    {
+      "pid": 15200,
+      "name": "SecurityHealthService.exe",
+      "exe_path": "C:\\Windows\\System32\\SecurityHealthService.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:03:58.043784"
+    },
+    {
+      "pid": 15344,
+      "name": "OfficeClickToRun.exe",
+      "exe_path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\OfficeClickToRun.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 13:48:50.571768"
+    },
+    {
+      "pid": 15496,
+      "name": "taskhostw.exe",
+      "exe_path": "C:\\Windows\\System32\\taskhostw.exe",
+      "command_line": "taskhostw.exe {222A245B-E637-4AE9-A93F-A59CA119A75E}",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:52.148843"
+    },
+    {
+      "pid": 15500,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:10:03.674409"
+    },
+    {
+      "pid": 15536,
+      "name": "M365Copilot.exe",
+      "exe_path": "C:\\Program Files\\WindowsApps\\Microsoft.MicrosoftOfficeHub_19.2608.41021.0_x64__8wekyb3d8bbwe\\M365Copilot.exe",
+      "command_line": "C:\\Program Files\\WindowsApps\\Microsoft.MicrosoftOfficeHub_19.2608.41021.0_x64__8wekyb3d8bbwe\\M365Copilot.exe ms-getoffice: autostart reason=AutoStarter",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.112342"
+    },
+    {
+      "pid": 15656,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k BthAppGroup -p -s BluetoothUserService",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.966854"
+    },
+    {
+      "pid": 15684,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:52.217701"
+    },
+    {
+      "pid": 15724,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 11:05:51.404675"
+    },
+    {
+      "pid": 15736,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=29 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=352754958231 --metrics-shmem-handle=8112,i,17285369735539630098,3716848712235684426,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=7232 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:02:31.661721"
+    },
+    {
+      "pid": 15848,
+      "name": "conhost.exe",
+      "exe_path": "C:\\Windows\\System32\\conhost.exe",
+      "command_line": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:51.785783"
+    },
+    {
+      "pid": 15880,
+      "name": "RtkAudUService64.exe",
+      "exe_path": "C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_030a6fd3020fb520\\RtkAudUService64.exe",
+      "command_line": "C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_030a6fd3020fb520\\RtkAudUService64.exe -background",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:02.601542"
+    },
+    {
+      "pid": 16168,
+      "name": "fontdrvhost.exe",
+      "exe_path": "C:\\Windows\\System32\\fontdrvhost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-14 19:31:31.526074"
+    },
+    {
+      "pid": 16192,
+      "name": "chrome.exe",
+      "exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "command_line": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --no-pre-read-main-dll --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=13 --time-ticks-at-unix-epoch=-1786685596708401 --launch-time-ticks=351399746452 --metrics-shmem-handle=6232,i,14811614590961474382,1310825236209633763,2097152 --field-trial-handle=1904,i,9912780781061912465,3340404769684998357,262144 --variations-seed-version=20260817-170059.061000-production --pseudonymization-salt-handle=1916,i,16450150387857238354,1707284539962703134,4 --trace-process-track-uuid=3190708998493415531 --mojo-platform-channel-handle=6208 /prefetch:1",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:39:56.455830"
+    },
+    {
+      "pid": 16208,
+      "name": "conhost.exe",
+      "exe_path": "C:\\Windows\\System32\\conhost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:58:07.091681"
+    },
+    {
+      "pid": 16492,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --embedded-browser-webview=1 --webview-exe-name=SearchHost.exe --webview-exe-version=2606.30004.100.0 --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView --noerrdialogs --disable-features=msSmartScreenProtection --edge-webview-enable-mojo-ipcz --enable-features=msEdgeFluentOverlayScrollbar --user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26200.9168) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26200 IsWebView2/True (WebView2Version 151.0.4129.78) --lang=en-US --mojo-named-platform-channel-pipe=1560.14388.8165780494513227310 /pfhostedapp:0dad5bc148ba3231a08a0423eb0873caa5ef2a0a",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:58:56.316816"
+    },
+    {
+      "pid": 16544,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:54:49.123321"
+    },
+    {
+      "pid": 16660,
+      "name": "ctfmon.exe",
+      "exe_path": "C:\\Windows\\System32\\ctfmon.exe",
+      "command_line": "/QuitInfo:00000000000001DC;0000000000000338;",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:00.618680"
+    },
+    {
+      "pid": 16860,
+      "name": "msedgewebview2.exe",
+      "exe_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe",
+      "command_line": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\151.0.4129.78\\msedgewebview2.exe --embedded-browser-webview=1 --webview-exe-name=M365Copilot.exe --webview-exe-version=19.2608.41021.0 --user-data-dir=C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView --noerrdialogs --embedded-browser-webview-dpi-awareness=2 --disable-features=msEnhancedTrackingPreventionEnabled --enable-features=msSingleSignOnOSForPrimaryAccountIsShared --mojo-named-platform-channel-pipe=15536.11708.1614724121543518122 /pfhostedapp:cbeec7ffbf4aa3230688eb1e2a5b78dcd2c3b179",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-17 10:59:10.641154"
+    },
+    {
+      "pid": 17248,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "C:\\WINDOWS\\system32\\svchost.exe -k DevicesFlow -s DevicesFlowUserSvc",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 12:59:22.284550"
+    },
+    {
+      "pid": 17492,
+      "name": "conhost.exe",
+      "exe_path": "C:\\Windows\\System32\\conhost.exe",
+      "command_line": "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:54:07.648295"
+    },
+    {
+      "pid": 17740,
+      "name": "OneDrive.Sync.Service.exe",
+      "exe_path": "C:\\Users\\Akshaydeep.shukla\\AppData\\Local\\Microsoft\\OneDrive\\26.139.0720.0007\\OneDrive.Sync.Service.exe",
+      "command_line": "/silentConfig",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:50:59.655138"
+    },
+    {
+      "pid": 17980,
+      "name": "svchost.exe",
+      "exe_path": "C:\\Windows\\System32\\svchost.exe",
+      "command_line": "",
+      "is_script": false,
+      "script_type": "None",
+      "is_suspicious": false,
+      "create_time": "2026-08-18 13:59:28.727194"
+    }
+  ],
+  "stats": {
+    "total_apps": 36,
+    "total_uninstalled": 0,
+    "total_processes": 233,
+    "suspicious_processes": 0
+  }
+}
