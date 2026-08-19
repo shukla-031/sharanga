@@ -34,6 +34,26 @@ LAST_SCAN_DATA = {}
 SESSION_SCAN_DATA = {}
 
 # ============================================================
+# DATABASE INITIALIZATION ON FIRST REQUEST
+# ============================================================
+db_initialized = False
+
+@app.before_request
+def initialize_database():
+    """Ensure database is initialized before any request"""
+    global db_initialized
+    if not db_initialized:
+        try:
+            print("🗄️ Initializing database on first request...")
+            init_db()
+            db_initialized = True
+            print("✅ Database initialized successfully!")
+        except Exception as e:
+            print(f"❌ Database init error: {e}")
+            import traceback
+            traceback.print_exc()
+
+# ============================================================
 # AUTHENTICATION ROUTES
 # ============================================================
 
@@ -46,6 +66,15 @@ def login():
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
+            
+            # Check if table exists
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
+            if not cursor.fetchone():
+                print("❌ Users table not found! Initializing database...")
+                init_db()
+                conn = get_db_connection()
+                cursor = conn.cursor()
+            
             user = cursor.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
             conn.close()
             
@@ -62,6 +91,7 @@ def login():
                 return render_template('login.html', error='❌ Invalid username or password')
         except Exception as e:
             print(f"❌ Login error: {e}")
+            print(traceback.format_exc())
             return render_template('login.html', error='❌ Database error. Please try again.')
     
     return render_template('login.html')
@@ -913,7 +943,7 @@ def download_report():
         weather = config.get('weather', {})
         if weather:
             doc.add_heading('🌤️ Weather Information', level=1)
-            table = doc.add_table(rows=6, cols=2)
+            table = doc.add_table(rows=5, cols=2)
             table.style = 'Light Grid Accent 1'
             
             weather_info = [
@@ -921,8 +951,7 @@ def download_report():
                 ('Temperature', weather.get('temperature', '--°C')),
                 ('Condition', weather.get('condition', 'Unknown')),
                 ('Humidity', weather.get('humidity', '--%')),
-                ('Wind Speed', weather.get('wind_speed', '-- km/h')),
-                ('Pressure', weather.get('pressure', '-- hPa'))
+                ('Wind Speed', weather.get('wind_speed', '-- km/h'))
             ]
             
             for i, (label, value) in enumerate(weather_info):
@@ -951,12 +980,7 @@ def download_report():
             
             doc.add_paragraph()
         
-        # Battery
-        if config.get('battery_percent'):
-            doc.add_paragraph(f'🔋 Battery: {config.get("battery_percent")}% ({config.get("battery_status", "Unknown")})')
-            doc.add_paragraph()
-        
-        # ========== INSTALLED APPLICATIONS (ALL - NO LIMIT) ==========
+        # ========== INSTALLED APPLICATIONS ==========
         apps = data.get('installed_apps', [])
         doc.add_heading(f'📦 Installed Applications ({len(apps)})', level=1)
         
@@ -977,59 +1001,68 @@ def download_report():
         
         doc.add_paragraph()
         
-        # Suspicious Processes
+        # ========== RUNNING PROCESSES ==========
         processes = data.get('running_processes', [])
+        doc.add_heading(f'🔄 Running Processes ({len(processes)})', level=1)
+        
+        if processes:
+            table = doc.add_table(rows=1+len(processes), cols=4)
+            table.style = 'Light Grid Accent 1'
+            
+            headers = ['#', 'Process Name', 'PID', 'Status']
+            for i, h in enumerate(headers):
+                table.rows[0].cells[i].text = h
+            
+            for idx, p in enumerate(processes):
+                table.rows[idx+1].cells[0].text = str(idx+1)
+                table.rows[idx+1].cells[1].text = p.get('name', 'Unknown')
+                table.rows[idx+1].cells[2].text = str(p.get('pid', 'Unknown'))
+                table.rows[idx+1].cells[3].text = '⚠️ Suspicious' if p.get('is_suspicious') else '✅ Normal'
+        else:
+            doc.add_paragraph('No processes found')
+        
+        doc.add_paragraph()
+        
+        # ========== SUSPICIOUS PROCESSES HIGHLIGHT ==========
         suspicious = [p for p in processes if p.get('is_suspicious')]
         if suspicious:
             doc.add_heading(f'⚠️ Suspicious Processes ({len(suspicious)})', level=1)
             table = doc.add_table(rows=1+len(suspicious), cols=3)
             table.style = 'Light Grid Accent 1'
             
-            headers = ['Process Name', 'PID', 'Status']
+            headers = ['Process Name', 'PID', 'Alert']
             for i, h in enumerate(headers):
                 table.rows[0].cells[i].text = h
             
             for idx, p in enumerate(suspicious):
                 table.rows[idx+1].cells[0].text = p.get('name', 'Unknown')
                 table.rows[idx+1].cells[1].text = str(p.get('pid', 'Unknown'))
-                table.rows[idx+1].cells[2].text = '⚠️ Suspicious'
+                table.rows[idx+1].cells[2].text = '🚨 Suspicious Process Detected'
             
             doc.add_paragraph()
         
-        # Uninstalled
-        uninstalled = data.get('uninstalled_apps', [])
-        if uninstalled:
-            doc.add_heading(f'🗑️ Recently Uninstalled ({len(uninstalled)})', level=1)
-            table = doc.add_table(rows=1+len(uninstalled), cols=2)
-            table.style = 'Light Grid Accent 1'
-            
-            headers = ['Application Name', 'Uninstalled Date']
-            for i, h in enumerate(headers):
-                table.rows[0].cells[i].text = h
-            
-            for idx, app in enumerate(uninstalled):
-                table.rows[idx+1].cells[0].text = app.get('app_name', 'Unknown')
-                table.rows[idx+1].cells[1].text = str(app.get('uninstall_date', 'Unknown'))
-            
+        # ========== BATTERY ==========
+        if config.get('battery_percent'):
+            doc.add_paragraph(f'🔋 Battery: {config.get("battery_percent")}% ({config.get("battery_status", "Unknown")})')
             doc.add_paragraph()
         
-        # Summary
-        stats = data.get('stats', {})
+        # ========== SUMMARY ==========
         doc.add_heading('📊 Summary', level=1)
+        
+        stats = data.get('stats', {})
+        risk_score = stats.get('risk_score', 0)
+        risk_level = 'HIGH' if risk_score >= 60 else 'MEDIUM' if risk_score >= 30 else 'LOW'
         
         summary_table = doc.add_table(rows=6, cols=2)
         summary_table.style = 'Light Grid Accent 1'
-        
-        risk_score = stats.get('risk_score', 0)
-        risk_level = 'HIGH' if risk_score >= 60 else 'MEDIUM' if risk_score >= 30 else 'LOW'
         
         summary_data = [
             ('Total Applications', str(len(apps))),
             ('Running Processes', str(len(processes))),
             ('Suspicious Processes', str(len(suspicious))),
-            ('Uninstalled (7 days)', str(stats.get('total_uninstalled', 0))),
             ('Risk Score', f"{risk_score}/100"),
-            ('Risk Level', risk_level)
+            ('Risk Level', risk_level),
+            ('Asset Number', data.get('asset_number', 'N/A'))
         ]
         
         for i, (label, value) in enumerate(summary_data):
@@ -1038,7 +1071,7 @@ def download_report():
         
         doc.add_paragraph()
         
-        # Footer
+        # ========== FOOTER ==========
         doc.add_paragraph('-' * 50)
         footer = doc.add_paragraph('🏹 Sharanga - The Divine Bow of Cyber Defense')
         footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -1046,12 +1079,13 @@ def download_report():
         footer = doc.add_paragraph('Generated by Sharanga Security Tool')
         footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
         
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"sharanga_report_{timestamp}.docx"
-        
+        # Save to buffer
         file_buffer = io.BytesIO()
         doc.save(file_buffer)
         file_buffer.seek(0)
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"sharanga_report_{timestamp}.docx"
         
         return send_file(
             file_buffer,
@@ -1066,21 +1100,14 @@ def download_report():
         return jsonify({'error': str(e)}), 500
 
 # ============================================================
-# RUN APPLICATION (FIXED FOR RENDER)
+# RUN APPLICATION
 # ============================================================
 
 if __name__ == '__main__':
-    # FORCE database initialization
-    print("🗄️ Initializing database...")
-    try:
-        init_db()
-        print("✅ Database initialized successfully!")
-    except Exception as e:
-        print(f"❌ Database init error: {e}")
-        print(traceback.format_exc())
-    
-    # Render uses PORT environment variable
-    port = int(os.environ.get('PORT', 5000))
-    # Debug mode only on local, not on Render
-    debug = os.environ.get('FLASK_ENV') != 'production'
-    app.run(host='0.0.0.0', port=port, debug=debug)
+    print("🏹 Sharanga Security Tool")
+    print("=" * 50)
+    print("🔧 Starting server...")
+    print("🌐 Access at: http://localhost:5000")
+    print("👤 Default admin: admin / admin123")
+    print("=" * 50)
+    app.run(debug=True, host='0.0.0.0', port=5000)
