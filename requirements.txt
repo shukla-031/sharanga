@@ -1,19 +1,7 @@
-# Core
 flask==2.3.3
 gunicorn==21.2.0
-
-# System Info
 psutil==5.9.5
-wmi==1.5.1
-pywin32==306
-netifaces==0.11.0
-
-# Database & Auth
 bcrypt==4.0.1
 python-dotenv==1.0.0
-
-# Reports
 python-docx==1.1.0
-
-# API & Utilities
 requests==2.31.0
