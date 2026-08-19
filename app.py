@@ -1061,6 +1061,14 @@ def download_report():
         print(traceback.format_exc())
         return jsonify({'error': str(e)}), 500
 
+# ============================================================
+# RUN APPLICATION (FIXED FOR RENDER)
+# ============================================================
+
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Render uses PORT environment variable
+    port = int(os.environ.get('PORT', 5000))
+    # Debug mode only on local, not on Render
+    debug = os.environ.get('FLASK_ENV') != 'production'
+    app.run(host='0.0.0.0', port=port, debug=debug)
